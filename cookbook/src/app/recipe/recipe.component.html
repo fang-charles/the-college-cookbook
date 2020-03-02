@@ -2,3 +2,25 @@
   <h1>Submit a Recipe</h1>
 </div>
 
+<h1>Edit Product</h1>
+
+<form [formGroup]="recipe">
+
+  <label>
+    Name: <input formControlName="name" />
+  </label>
+  <h2>Ingredients</h2>
+
+  <div formArrayName="ingredients">
+    <div *ngFor="let item of Ingredients.controls; let pointIndex=index" [formGroupName]="pointIndex">
+      <label>
+        Ingredient: <input formControlName="ingredient" />
+      </label>
+      <button type="button" (click)="deleteIngredient(pointIndex)">Delete Ingredient</button>
+    </div>
+    <button type="button" (click)="addIngredient()">Add Ingredient</button>
+  </div>
+
+</form>
+
+{{ this.recipe.value | json }}
