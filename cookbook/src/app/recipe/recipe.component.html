@@ -40,11 +40,13 @@
 </form>
 
 <script>
+  var numIngredients = 1;
   function addIngredient(){
       var input = document.createElement("div");
       input.setAttribute('class', 'form-group');
       input.innerHTML = "<input type='text' id='ingredient' class='form-control' name='ingredient' required/>";
       document.getElementById("newElementId").appendChild(input);
+      numIngredients++;
   };
 
   function addStep(){
@@ -60,7 +62,11 @@
           alert("Name must be filled out!");
           return false;
       }
+
+      var i = function(){ return numIngredients + " ingredients used."; };
+      alert(i());
   };
+
 </script>
 <!-- <form [formGroup]="recipe">
   <div class="form-group">
