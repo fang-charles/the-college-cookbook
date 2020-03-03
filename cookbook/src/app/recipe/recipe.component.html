@@ -30,7 +30,7 @@
     <input type="text" id="steps" class="form-control" name="steps" />
     <span class="error" id="steps-note"></span>
   </div>
-  
+
   <div id="newStep"></div>
   <input type="button" class="btn btn-light" id="add1" value="Add Step" onclick="addStep()"/>
 
@@ -56,9 +56,9 @@
 
   function validateForm() {
       var x = document.forms["recipeForm"]["ingredient"].value;
-
-      if (x == "") {
-          alert("Ingredients must be filled out");
+      var y = document.forms["recipeForm"]["steps"].value;
+      if (x == "" || y == "") {
+          alert("All fields must be filled out!");
           return false;
       }
 
