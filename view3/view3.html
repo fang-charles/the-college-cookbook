@@ -16,7 +16,7 @@
     <h5>Recipe from: https://thisoldgal.com/instant-pot-french-dip/</h5>
     <h3> Ingredients</h3>
     <ul class="list-group">
-      <li class="list-group-item">Beef Chuck Roast</li>
+      <li class="list-group-item" id="ingredient1"></li>
       <li class="list-group-item">Italian Dressing</li>
       <li class="list-group-item">Warm Water</li>
       <li class="list-group-item">Pepperoncini</li>
@@ -74,4 +74,13 @@
       </tbody>
     </table>
   </body>
+
+<script>
+    var i;
+
+    i = () => "Beef Chuck Roast";
+
+    document.getElementById("ingredient1").innerHTML = i();
+
+</script>
 </html>
