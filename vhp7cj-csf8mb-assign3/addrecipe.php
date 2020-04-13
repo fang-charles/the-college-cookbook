@@ -66,7 +66,14 @@
 
       var i = function(){ return numIngredients + " ingredients used."; };
       alert(i());
+
   };
+
+  <?php
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        header("Location: " . 'recipe.php');
+    }
+  ?>
 
 </script>
 <!-- <form [formGroup]="recipe">
