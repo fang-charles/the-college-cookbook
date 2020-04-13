@@ -13,8 +13,8 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <body>
-    <h1><?php if(isset($_POST['recipename'])) echo $_POST['recipename'] ?>Instant Pot French Dip Sandwich [Italian Drip]</h1>
-    <h5>Recipe from: https://thisoldgal.com/instant-pot-french-dip/</h5>
+    <h1><?php echo $_POST['recipename'] ?></h1>
+    
     <h3> Ingredients</h3>
     <ul class="list-group">
       <li class="list-group-item" id="ingredient1"></li>

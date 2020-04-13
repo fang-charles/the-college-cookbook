@@ -10,7 +10,7 @@
   <h1>Submit a Recipe</h1>
 </div>
 
-<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" name="recipeForm">
+<form action="recipe.php" method="post" name="recipeForm">
   <div class="form-group">
     <label for="recipename">Recipe Name</label>
     <input type="text" id="recipename" class="form-control" name="recipename"/>
