@@ -74,6 +74,10 @@ include('header.html');
 	</div>
 </body>
 
+<?php 
+include('footer.html');
+?>
+
 <script>
 	var numIngredients = 1;
 	var numSteps = 1;

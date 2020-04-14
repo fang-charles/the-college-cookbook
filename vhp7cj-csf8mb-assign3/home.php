@@ -39,8 +39,8 @@ require('dbquery.php');
   </style>
 </head>
 
-<?php session_start() ;
-      include('header.html');
+<?php session_start();
+include('header.html');
 ?>
 
 <script>
@@ -54,58 +54,64 @@ require('dbquery.php');
   }
 </script>
 
-<div style="text-align:center" onmouseover="updateMessage()" onmouseout="revertMesage()" id="title_msg">
-  <h1>Food is life</h1>
-</div>
-<h1 align="center">Hi, <font color="green" style="font-style:italic"><?php echo $_COOKIE['username']; ?></font>
-</h1>
+<body>
+  <div style="text-align:center" onmouseover="updateMessage()" onmouseout="revertMesage()" id="title_msg">
+    <h1>Food is life</h1>
+  </div>
+  <h1 align="center">Hi, <font color="navy" style="font-style:italic"><?php echo $_COOKIE['username']; ?></font>
+  </h1>
 
-<?php $recipes = getAllRecipes(); ?>
+  <?php $recipes = getAllRecipes(); ?>
 
-<div class="album py-5 bg-light">
-  <div class="container">
-    <div class="row">
-      <?php foreach($recipes as $recipe): ?>
-      <div class="col-md-6">
-        <div class="card mb-6 box-shadow">
-          <div class="card-body">
-            <h5 class="card-title"><?php echo $recipe['recipeName'] ?></h5>
-            <p class="card-text">
-              Ingredients:
-              <?php $str = "";
-              for($i = 1; $i <= $recipe['numIngredients']; $i++){
-                  $str = "ingredient" . $i;
-                  if($i != $recipe['numIngredients'])
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <?php foreach ($recipes as $recipe) : ?>
+          <div class="col-md-6">
+            <div class="card mb-6 box-shadow">
+              <div class="card-body">
+                <h5 class="card-title"><?php echo $recipe['recipeName'] ?></h5>
+                <p class="card-text">
+                  Ingredients:
+                  <?php $str = "";
+                  for ($i = 1; $i <= $recipe['numIngredients']; $i++) {
+                    $str = "ingredient" . $i;
+                    if ($i != $recipe['numIngredients'])
                       echo "$recipe[$str], ";
 
-                  else
+                    else
                       echo "$recipe[$str]";
-              } ?>
-            </p>
-            <p class="card-text">
-                Steps: <br>
-                <?php $str = "";
-                for($i = 1; $i <= $recipe['numSteps']; $i++){
+                  } ?>
+                </p>
+                <p class="card-text">
+                  Steps: <br>
+                  <?php $str = "";
+                  for ($i = 1; $i <= $recipe['numSteps']; $i++) {
                     $str = "step" . $i;
                     echo "$i. $recipe[$str] <br>";
-                }
-                ?>
-            </p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                  View
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                  Favorite
-                </button>
+                  }
+                  ?>
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      View
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      Favorite
+                    </button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
               </div>
-              <small class="text-muted">9 mins</small>
             </div>
           </div>
-        </div>
+        <?php endforeach; ?>
       </div>
-      <?php endforeach; ?>
     </div>
   </div>
-  </div>
+</body>
+
+<?php 
+include('footer.html');
+?>
