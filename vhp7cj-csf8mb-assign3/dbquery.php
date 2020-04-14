@@ -83,5 +83,50 @@ function getRecentRecipe($id)
     $statement->closeCursor();
     return $results;
 }
+
+function updateRecipe($name, $ingredients, $steps, $id)
+{
+    global $db;
+
+    $food = array(); // array of ingredient1 ,ingredient2, etc.
+
+    for($i = 1; $i <= count($ingredients); $i++){
+        $food[] = "ingredient" . $i;
+    }
+
+    $ingredientquery = ""; // string of ingredient1, ingredient2, ...
+    $ingredientvalues = ""; // string of :ingredient1, :ingredient2, ...
+
+    foreach($food as $f){
+        $ingredientquery = $ingredientquery . $f ."=:" . $f;
+    }
+    echo $ingredientquery;
+
+
+    $stepsarray = array(); // array of step1, step2, ...
+
+    for($i = 1; $i <= count($steps); $i++){
+        $stepsarray[] = "step" . $i;
+    }
+
+    $stepquery = ""; // string of step1, step2, ...
+    $stepvalues = ""; // string of :step1, :step2, ...
+    foreach ($stepsarray as $step) {
+        $stepquery = $stepquery . $step . ", ";
+        $stepvalues = $stepvalues . ":" . $step . ", ";
+    }
+
+    $numIngredients = count($ingredients);
+    $numSteps = count($steps);
+    $query = "UPDATE recipes SET task_desc=:task, due_date=:due, priority=:priority WHERE recipeId=:id";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':task', $task);
+    $statement->bindValue(':due', $due);
+    $statement->bindValue(':priority', $priority);
+    $statement->bindValue(':id', $id);
+    $statement->execute();
+    $statement->closeCursor();
+
+}
 ?>
 
