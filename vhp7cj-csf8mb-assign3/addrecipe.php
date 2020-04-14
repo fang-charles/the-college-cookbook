@@ -106,8 +106,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Please add a step. <br>";
     if((!empty($_POST['recipename'])) && (count($_POST['ingredient']) >= 1 && $_POST['ingredient'][0] != "") && (count($_POST['steps']) >= 1 && $_POST['steps'][0] != "")) {
         addRecipe($_POST['recipename'], $_POST['ingredient'], $_POST['steps']);
-        $_SESSION['numSteps'] = $_POST['numSteps'];
-        $_SESSION['numIngredients'] = $_POST['numIngredients'];
+        $_SESSION['recipename'] = $_POST['recipename'];
+        $_SESSION['ingredient'] = $_POST['ingredient'];
+        $_SESSION['steps'] = $_POST['steps'];
         header("Location: " . "viewrecipe.php");
     }
 }

@@ -10,13 +10,14 @@
 </head>
 
 <body>
-  <h1><?php echo $_POST['recipename'] ?></h1>
+<?php session_start();?>
+  <h1><?php echo $_SESSION['recipename'] ?></h1>
 
   <h3> Ingredients</h3>
   <ul class="list-group">
     <?php
-    $myInputs = $_POST["ingredient"];
-    
+    $myInputs = $_SESSION["ingredient"];
+
     foreach ($myInputs as $eachInput) {
       echo "<li class=\"list-group-item\">" . $eachInput . "</li>";
     }
@@ -34,7 +35,7 @@
     <tbody>
 
       <?php
-      $myInputs = $_POST["steps"];
+      $myInputs = $_SESSION["steps"];
       $stepNum = 1;
 
       foreach ($myInputs as $eachInput) {
