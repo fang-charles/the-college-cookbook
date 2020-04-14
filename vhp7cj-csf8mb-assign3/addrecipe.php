@@ -10,6 +10,7 @@ require('dbquery.php');
   crossorigin="anonymous"
 />
 <?php session_start() ;
+      include('header.html');
   ?>
 
 <body onload="initializeCookies()"> 

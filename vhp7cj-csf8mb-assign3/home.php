@@ -36,7 +36,7 @@
 </head>
 
 <?php session_start() ;
-    
+      include('header.html');
   ?>
 
 <script>
@@ -56,7 +56,7 @@
   onmouseout="revertMesage()"
   id="title_msg"
 >
-  <h1>The College Cookbook</h1>
+  <h1>Food is life</h1>
 </div>
 <h1 align ="center">Hi, <font color="green" style="font-style:italic"><?php echo $_COOKIE['username']; ?></font></h1>
 <div class="album py-5 bg-light"> 
