@@ -1,3 +1,4 @@
+<?php require('connectdb.php'); ?>
 <!-- Vivian Pham and Charles Fang -->
 <link
   rel="stylesheet"
