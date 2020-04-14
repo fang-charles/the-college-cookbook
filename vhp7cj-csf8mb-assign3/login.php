@@ -83,7 +83,8 @@
   <div>
     <h1>Welcome to The College Cookbook!</h1>
     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get" name="loginForm">
-      Please enter your name below: </br><input type="text" name="username" placeholder="Gordon Ramsay" required /> <br />
+      Please enter your name below: </br>
+      <input type="text" name="username" placeholder="Gordon Ramsay" maxlength="20" required /> <br />
       <input type="submit" value="Enter the wonderful world of wonderful food!" class="btn btn-light"  />   
     </form>
 
@@ -92,7 +93,7 @@
 <?php
 
     if (isset($_GET['username'])){
-    if (($_SERVER['REQUEST_METHOD']=="GET") && (strlen($_GET['username']) >0)){
+    if (($_SERVER['REQUEST_METHOD']=="GET") && (strlen($_GET['username']) >0) && (strlen($_GET['username']) <= 20)){
         setcookie('username', $_GET['username'], time()+36000);
         header('Location: home.php');
     }

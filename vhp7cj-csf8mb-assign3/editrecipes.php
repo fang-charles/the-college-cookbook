@@ -3,26 +3,52 @@ require('connectdb.php');
 require('dbquery.php');
 ?>
 <!-- Vivian Pham and Charles Fang -->
-<link
-  rel="stylesheet"
-  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-  crossorigin="anonymous"
-/>
 
-<?php session_start() ;
-      include('header.html');
-  ?>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 
+<head>
+	<style>
+		#title_msg:hover {
+			background-color: grey;
+			animation-name: color-shift;
+			animation-duration: 4s;
+			animation-iteration-count: infinite;
+		}
 
-<body onload="initializeCookies()"> 
+		.card-body:hover {
+			background-color: aqua;
+		}
 
-<div style="text-align:center">
-  <h1>Submit a Recipe</h1>
-</div>
+		@keyframes color-shift {
+			0% {
+				background-color: red;
+			}
 
+			25% {
+				background-color: yellow;
+			}
 
-<div class="col-xs-12 col-sm-12 col-lg-12">
+			50% {
+				background-color: blue;
+			}
+
+			100% {
+				background-color: green;
+			}
+		}
+	</style>
+</head>
+
+<?php session_start();
+include('header.html');
+?>
+
+<body>
+	<div style="text-align:center">
+		<h1>Edit Recent Recipe</h1>
+	</div>
+	<?php $recipe = getRecentRecipe($_COOKIE['recipe_id']); ?>
+	<div class="col-xs-12 col-sm-12 col-lg-12">
 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" name="recipeForm">
   <div class="form-group">
   <div class="col-xs-6 col-xs-offset-3">
@@ -56,6 +82,7 @@ require('dbquery.php');
 </form>
 </div>
 </body>
+
 <script>
   var numIngredients = 1;
   var numSteps = 1;
@@ -94,63 +121,4 @@ require('dbquery.php');
      }
   };
 
-  /*function validateForm() {
-      var x = document.forms["recipeForm"]["name"].value;
-      if (x == "") {
-          alert("Name must be filled out!");
-          return false;
-      }
-
-      var i = function(){ return numIngredients + " ingredients used."; };
-      alert(i());
-
-  };*/
 </script>
-
-
-<?php
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (empty($_POST['recipename']))
-        echo "Please fill out the recipe name. <br>";
-
-    if (count($_POST['ingredient']) == 1 && $_POST['ingredient'][0] == "")
-        echo "Please add an ingredient. <br>";
-
-    if (count($_POST['steps']) == 1 && $_POST['steps'][0] == "")
-        echo "Please add a step. <br>";
-
-    if((!empty($_POST['recipename'])) && (count($_POST['ingredient']) >= 1 && $_POST['ingredient'][0] != "") && (count($_POST['steps']) >= 1 && $_POST['steps'][0] != "")) {
-      //save the time
-      //concat username+time into recipe_id  
-      addRecipe($_POST['recipename'], $_POST['ingredient'], $_POST['steps']);
-      //save id as cookie
-        
-        $_SESSION['recipename'] = $_POST['recipename'];
-        $_SESSION['ingredient'] = $_POST['ingredient'];
-        $_SESSION['steps'] = $_POST['steps'];
-        
-        header("Location: " . "viewrecipe.php");
-    }
-}
-?>
-<!-- <form [formGroup]="recipe">
-  <div class="form-group">
-  <label>
-    Name: <input formControlName="name" />
-  </label>
-  </div>
-  <h2>Ingredients</h2>
-
-  <div formArrayName="ingredients">
-    <div *ngFor="let item of Ingredients.controls; let pointIndex=index" [formGroupName]="pointIndex">
-      <label>
-        Ingredient: <input formControlName="ingredient" />
-      </label>
-      <button type="button" (click)="deleteIngredient(pointIndex)">Delete Ingredient</button>
-    </div>
-    <button type="button" (click)="addIngredient()">Add Ingredient</button>
-  </div>
-
-</form>
-
-{{ this.recipe.value | json }} -->

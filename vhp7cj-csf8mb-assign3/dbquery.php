@@ -66,5 +66,18 @@ function getAllRecipes()
     $statement->closeCursor();
     return $results;
 }
+
+function getRecentRecipe($id)
+{
+    global $db;
+
+    $query = "SELECT * FROM recipes WHERE recipe_id =$id" ;
+    $statement = $db->prepare($query);
+    $statement->execute();
+
+    $results = $statement->fetchAll();
+    $statement->closeCursor();
+    return $results;
+}
 ?>
 
