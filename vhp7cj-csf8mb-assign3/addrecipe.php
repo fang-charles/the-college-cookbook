@@ -121,7 +121,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['recipename'] = $_POST['recipename'];
         $_SESSION['ingredient'] = $_POST['ingredient'];
         $_SESSION['steps'] = $_POST['steps'];
-        
+
         header("Location: " . "viewrecipe.php");
     }
 }

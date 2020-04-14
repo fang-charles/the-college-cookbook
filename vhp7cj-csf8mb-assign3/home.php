@@ -39,9 +39,7 @@ require('dbquery.php');
   </style>
 </head>
 
-<?php session_start() ;
-    
-  ?>
+<?php session_start(); ?>
 
 <script>
   document
@@ -65,16 +63,35 @@ require('dbquery.php');
 <h1 align ="center">Hi, <font color="green" style="font-style:italic"><?php echo $_COOKIE['username']; ?></font></h1>
 
 <?php $recipes = getAllRecipes(); ?>
-<?php foreach($recipes as $recipe): ?>
+
 <div class="album py-5 bg-light">
   <div class="container">
     <div class="row">
+      <?php foreach($recipes as $recipe): ?>
       <div class="col-md-6">
         <div class="card mb-6 box-shadow">
           <div class="card-body">
             <h5 class="card-title"><?php echo $recipe['recipeName'] ?></h5>
             <p class="card-text">
-              Ingredients: <?php echo $recipe['ingredient1'] ?>
+              Ingredients:
+              <?php $str = "";
+              for($i = 1; $i <= $recipe['numIngredients']; $i++){
+                  $str = "ingredient" . $i;
+                  if($i != $recipe['numIngredients'])
+                      echo "$recipe[$str], ";
+
+                  else
+                      echo "$recipe[$str]";
+              } ?>
+            </p>
+            <p class="card-text">
+                Steps: <br>
+                <?php $str = "";
+                for($i = 1; $i <= $recipe['numSteps']; $i++){
+                    $str = "step" . $i;
+                    echo "$i. $str <br>";
+                }
+                ?>
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
@@ -90,73 +107,7 @@ require('dbquery.php');
           </div>
         </div>
       </div>
-        <?php endforeach; ?>
-      <div class="col-md-6">
-        <div class="card mb-6 box-shadow">
-          <div class="card-body">
-            <h5 class="card-title">Italian Beef</h5>
-            <p class="card-text">
-              Ingredients: Beef Chuck, Salt, Pepper, Italian Herbs <br />
-              Appliances: Instant Pot
-            </p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                  View
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                  Favorite
-                </button>
-              </div>
-              <small class="text-muted">80 mins</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card mb-6 box-shadow">
-          <div class="card-body">
-            <h5 class="card-title">Naan Pizza</h5>
-            <p class="card-text">
-              Ingredients: Naan, Tomato Sauce, Gouda Cheese <br />
-              Appliances: Oven
-            </p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                  View
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                  Favorite
-                </button>
-              </div>
-              <small class="text-muted">20 mins</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card mb-6 box-shadow">
-          <div class="card-body">
-            <h5 class="card-title">Ramen</h5>
-            <p class="card-text">
-              Ingredients: Chicken Broth, Ramen Noodles, Boiled Egg, Imitation
-              Crab, Pork Belly
-            </p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                  View
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                  Favorite
-                </button>
-              </div>
-              <small class="text-muted">60 mins</small>
-            </div>
-          </div>
-        </div>
-      </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </div>
