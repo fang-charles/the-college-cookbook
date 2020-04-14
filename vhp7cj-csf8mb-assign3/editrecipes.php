@@ -7,36 +7,7 @@ require('dbquery.php');
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 
 <head>
-	<style>
-		#title_msg:hover {
-			background-color: grey;
-			animation-name: color-shift;
-			animation-duration: 4s;
-			animation-iteration-count: infinite;
-		}
 
-		.card-body:hover {
-			background-color: aqua;
-		}
-
-		@keyframes color-shift {
-			0% {
-				background-color: red;
-			}
-
-			25% {
-				background-color: yellow;
-			}
-
-			50% {
-				background-color: blue;
-			}
-
-			100% {
-				background-color: green;
-			}
-		}
-	</style>
 </head>
 
 <?php session_start();
@@ -48,19 +19,21 @@ include('header.html');
 		<h1>Edit Recent Recipe</h1>
 	</div>
 	<?php $recipe = getRecentRecipe($_COOKIE['recipe_id']); ?>
+
+
 	<div class="col-xs-12 col-sm-12 col-lg-12">
 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" name="recipeForm">
   <div class="form-group">
   <div class="col-xs-6 col-xs-offset-3">
     <label for="recipename">Recipe Name</label>
-    <input type="text" id="recipename" class="form-control" name="recipename"/>
+    <input type="text" id="recipename" class="form-control" name="recipename" value="<?php $recipe['recipeName']?>"/>
     <span class="error" id="recipename-note"></span>
 </div>
   </div>
 
   <div class="form-group">
     <label for="ingredient">Ingredients</label>
-    <input type="text" id="ingredient" class="form-control" name="ingredient[]" required/>
+    <input type="text" id="ingredient" class="form-control" name="ingredient[]" required value="<?php $recipe['ingredient1']?>"/>
     <span class="error" id="ingredient-note"></span>
   </div>
 
@@ -69,7 +42,7 @@ include('header.html');
 
   <div class="form-group">
     <label for="ingredient">Steps</label>
-    <input type="text" id="steps" class="form-control" name="steps[]" required/>
+    <input type="text" id="steps" class="form-control" name="steps[]" required value="<?php $recipe['step1']?>"/>
     <span class="error" id="steps-note"></span>
   </div>
 
@@ -77,7 +50,7 @@ include('header.html');
   <input type="button" class="btn btn-light" id="add1" value="Add Step" onclick="addStep()"/>
 
   <div>
-  <button class="btn btn-primary" formnovalidate>Add Recipe!</button>
+  <button class="btn btn-primary" formnovalidate>Update Recipe!</button>
   </div>
 </form>
 </div>
@@ -88,10 +61,6 @@ include('header.html');
   var numSteps = 1;
   var limit = 10;
 
-  function initializeCookies(){
-    document.cookie = "numIngredients=" + numIngredients;
-    document.cookie = "numSteps=" + numSteps;
-  }
 
   function addIngredient(){
     if (numIngredients == limit)  {
