@@ -10,7 +10,10 @@
 </head>
 
 <body>
-<?php session_start();?>
+<?php session_start();
+include('header.html');
+?>
+
   <h1><?php echo $_SESSION['recipename'] ?></h1>
 
   <h3> Ingredients</h3>
