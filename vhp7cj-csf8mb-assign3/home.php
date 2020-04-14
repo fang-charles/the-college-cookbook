@@ -87,7 +87,7 @@ require('dbquery.php');
                 <?php $str = "";
                 for($i = 1; $i <= $recipe['numSteps']; $i++){
                     $str = "step" . $i;
-                    echo "$i. $str <br>";
+                    echo "$i. $recipe[$str] <br>";
                 }
                 ?>
             </p>
