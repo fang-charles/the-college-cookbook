@@ -14,7 +14,12 @@
   </head>
   <body>
     <h1><?php echo $_POST['recipename'] ?></h1>
-    
+    <?php 
+    $myInputs = $_POST["steps"];
+    foreach ($myInputs as $eachInput) {
+         echo $eachInput . "<br>";
+    }
+    ?>
     <h3> Ingredients</h3>
     <ul class="list-group">
       <li class="list-group-item" id="ingredient1"></li>

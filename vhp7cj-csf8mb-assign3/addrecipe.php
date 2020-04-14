@@ -19,7 +19,7 @@
 
   <div class="form-group">
     <label for="ingredient">Ingredients</label>
-    <input type="text" id="ingredient" class="form-control" name="ingredient" required/>
+    <input type="text" id="ingredient" class="form-control" name="ingredient[]" required/>
     <span class="error" id="ingredient-note"></span>
   </div>
 
@@ -28,7 +28,7 @@
 
   <div class="form-group">
     <label for="ingredient">Steps</label>
-    <input type="text" id="steps" class="form-control" name="steps" required/>
+    <input type="text" id="steps" class="form-control" name="steps[]" required/>
     <span class="error" id="steps-note"></span>
   </div>
 
@@ -45,7 +45,7 @@
   function addIngredient(){
       var input = document.createElement("div");
       input.setAttribute('class', 'form-group');
-      input.innerHTML = "<input type='text' id='ingredient' class='form-control' name='ingredient' required/>";
+      input.innerHTML = "<input type='text' id='ingredient' class='form-control' name='ingredient[]' required/>";
       document.getElementById("newElementId").appendChild(input);
       numIngredients++;
   };
@@ -53,7 +53,7 @@
   function addStep(){
       var input1 = document.createElement("div");
       input1.setAttribute('class', 'form-group');
-      input1.innerHTML = "<input type='text' id='steps' class='form-control' name='steps' required/>";
+      input1.innerHTML = "<input type='text' id='steps' class='form-control' name='steps[]' required/>";
       document.getElementById("newStep").appendChild(input1);
   };
 
