@@ -79,6 +79,7 @@
 </head>
 
 <body>
+
   <div>
     <h1>Welcome to The College Cookbook!</h1>
     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get" name="loginForm">
