@@ -73,11 +73,13 @@ function getRecentRecipe($id)
 {
     global $db;
 
-    $query = "SELECT * FROM recipes WHERE recipe_id =$id" ;
+    $query = "SELECT * FROM recipes WHERE recipeId = :id" ;
+
     $statement = $db->prepare($query);
+    $statement->bindValue(':id', $id);
     $statement->execute();
 
-    $results = $statement->fetchAll();
+    $results = $statement->fetch();
     $statement->closeCursor();
     return $results;
 }
