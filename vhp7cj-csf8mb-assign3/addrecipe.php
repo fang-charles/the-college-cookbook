@@ -10,8 +10,9 @@ require('dbquery.php');
   crossorigin="anonymous"
 />
 <?php session_start() ;
-    
   ?>
+
+<body onload="initializeCookies()"> 
 <div style="text-align:center">
   <h1>Submit a Recipe</h1>
 </div>
@@ -50,11 +51,16 @@ require('dbquery.php');
   </div>
 </form>
 </div>
-
+</body>
 <script>
   var numIngredients = 1;
   var numSteps = 1;
   var limit = 10;
+
+  function initializeCookies(){
+    document.cookie = "numIngredients=" + numIngredients;
+    document.cookie = "numSteps=" + numSteps;
+  }
 
   function addIngredient(){
     if (numIngredients == limit)  {
@@ -66,6 +72,7 @@ require('dbquery.php');
       input.innerHTML = "<input type='text' id='ingredient' class='form-control' name='ingredient[]' required/>";
       document.getElementById("newElementId").appendChild(input);
       numIngredients++;
+      document.cookie = "numIngredients=" + numIngredients;
      }
   };
 
@@ -79,6 +86,7 @@ require('dbquery.php');
       input1.innerHTML = "<input type='text' id='steps' class='form-control' name='steps[]' required/>";
       document.getElementById("newStep").appendChild(input1);
       numSteps++;
+      document.cookie = "numSteps=" + numSteps;
      }
   };
 
