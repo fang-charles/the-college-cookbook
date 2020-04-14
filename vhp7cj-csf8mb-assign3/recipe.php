@@ -1,92 +1,53 @@
 <!-- Vivian Pham and Charles Fang -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>View Recipe</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-  </head>
-  <body>
-    <h1><?php echo $_POST['recipename'] ?></h1>
-    <?php 
-    $myInputs = $_POST["steps"];
+
+<head>
+  <meta charset="UTF-8" />
+  <title>View Recipe</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+</head>
+
+<body>
+  <h1><?php echo $_POST['recipename'] ?></h1>
+
+  <h3> Ingredients</h3>
+  <ul class="list-group">
+    <?php
+    $myInputs = $_POST["ingredient"];
+    
     foreach ($myInputs as $eachInput) {
-         echo $eachInput . "<br>";
+      echo "<li class=\"list-group-item\">" . $eachInput . "</li>";
     }
     ?>
-    <h3> Ingredients</h3>
-    <ul class="list-group">
-      <li class="list-group-item" id="ingredient1"></li>
-      <li class="list-group-item">Italian Dressing</li>
-      <li class="list-group-item">Warm Water</li>
-      <li class="list-group-item">Pepperoncini</li>
-      <li class="list-group-item">French Bread</li>
-    </ul>
 
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">Steps</th>
+  </ul>
 
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>
-            Trim your roast and cut into 4 pieces. Place Roast, Consommé,
-            Worcestershire Sauce, Seasoning packets, Soy Sauce, Water, 1/2 jar
-            Pepperocini Juice and Pepperoncini Peppers to Pressure Cooker
-            cooking pot.
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>
-            Lock on lid and close Pressure Valve. Cook at High Pressure for 55
-            minutes. When Beep sounds, allow a Full Natural Pressure Release.
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>
-            Remove beef from pot and shred well. Skim fat off juice and return
-            beef to cooking pot.
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td>
-            Butter both sides of Deli Rolls and sprinkle garlic on both sides.
-            Place in Air Fryer or under the boiler and toast until slightly
-            golden. Place meat on top of bottom half of Deli Roll and top with
-            cheese, if desired. Melt cheese in Air Fryer or under broiler.
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">5</th>
-          <td>
-            Place a couple of Pepperoncini Peppers on top of meat. Place top bun
-            and cut sandwich on the diagonal. Serve with a Ramekin full of
-            juice, for dipping.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </body>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Steps</th>
 
-<script>
-    var i;
+      </tr>
+    </thead>
+    <tbody>
 
-    i = () => "Beef Chuck Roast";
+      <?php
+      $myInputs = $_POST["steps"];
+      $stepNum = 1;
 
-    document.getElementById("ingredient1").innerHTML = i();
+      foreach ($myInputs as $eachInput) {
+        echo "      <tr>
+        <th scope=\"row\">". $stepNum . "</th>
+        <td>" . $eachInput . "        </td>
+        </tr>";
+        $stepNum++;
+      }
+      ?>
+    </tbody>
+  </table>
+</body>
 
-</script>
+
 </html>
