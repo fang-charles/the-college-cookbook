@@ -10,8 +10,8 @@ require('dbquery.php');
   crossorigin="anonymous"
 />
 <?php session_start() ;
-    
-  ?>
+
+?>
 <div style="text-align:center">
   <h1>Submit a Recipe</h1>
 </div>
