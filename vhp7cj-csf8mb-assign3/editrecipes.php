@@ -26,14 +26,14 @@ include('header.html');
   <div class="form-group">
   <div class="col-xs-6 col-xs-offset-3">
     <label for="recipename">Recipe Name</label>
-    <input type="text" id="recipename" class="form-control" name="recipename" value="<?php $recipe['recipeName']?>"/>
+    <input type="text" id="recipename" class="form-control" name="recipename" value="<?php echo $recipe['recipeName']?>"/>
     <span class="error" id="recipename-note"></span>
 </div>
   </div>
 
   <div class="form-group">
     <label for="ingredient">Ingredients</label>
-    <input type="text" id="ingredient" class="form-control" name="ingredient[]" required value="<?php $recipe['ingredient1']?>"/>
+    <input type="text" id="ingredient" class="form-control" name="ingredient[]" required value="<?php echo $recipe['ingredient1']?>"/>
     <span class="error" id="ingredient-note"></span>
   </div>
 
@@ -42,7 +42,7 @@ include('header.html');
 
   <div class="form-group">
     <label for="ingredient">Steps</label>
-    <input type="text" id="steps" class="form-control" name="steps[]" required value="<?php $recipe['step1']?>"/>
+    <input type="text" id="steps" class="form-control" name="steps[]" required value="<?php echo $recipe['step1']?>"/>
     <span class="error" id="steps-note"></span>
   </div>
 
