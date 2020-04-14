@@ -106,3 +106,17 @@ include('header.html');
 		}
 	};
 </script>
+
+<?php
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if((!empty($_POST['recipename'])) && (count($_POST['ingredient']) >= 1 && $_POST['ingredient'][0] != "") && (count($_POST['steps']) >= 1 && $_POST['steps'][0] != "")) {
+        updateRecipe($_POST['recipename'], $_POST['ingredient'], $_POST['steps'], $_COOKIE['recipe_id']);
+
+        $_SESSION['recipename'] = $_POST['recipename'];
+        $_SESSION['ingredient'] = $_POST['ingredient'];
+        $_SESSION['steps'] = $_POST['steps'];
+
+        header("Location: " . "viewrecipe.php");
+    }
+}
+?>

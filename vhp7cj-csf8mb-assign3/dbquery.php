@@ -94,14 +94,11 @@ function updateRecipe($name, $ingredients, $steps, $id)
         $food[] = "ingredient" . $i;
     }
 
-    $ingredientquery = ""; // string of ingredient1, ingredient2, ...
-    $ingredientvalues = ""; // string of :ingredient1, :ingredient2, ...
+    $ingredientquery = ""; // string of ingredient1 =: ingredient1, ingredient2 =: ingredient2, ...
 
     foreach($food as $f){
-        $ingredientquery = $ingredientquery . $f ."=:" . $f;
+        $ingredientquery = $ingredientquery . $f ."=:" . $f . ", ";
     }
-    echo $ingredientquery;
-
 
     $stepsarray = array(); // array of step1, step2, ...
 
@@ -109,24 +106,32 @@ function updateRecipe($name, $ingredients, $steps, $id)
         $stepsarray[] = "step" . $i;
     }
 
-    $stepquery = ""; // string of step1, step2, ...
-    $stepvalues = ""; // string of :step1, :step2, ...
+    $stepquery = ""; // string of step1 =: step1, step2 =: step2, ...
+
     foreach ($stepsarray as $step) {
-        $stepquery = $stepquery . $step . ", ";
-        $stepvalues = $stepvalues . ":" . $step . ", ";
+        $stepquery = $stepquery . $step . "=:" . $step . ", ";
     }
 
     $numIngredients = count($ingredients);
     $numSteps = count($steps);
-    $query = "UPDATE recipes SET task_desc=:task, due_date=:due, priority=:priority WHERE recipeId=:id";
+    $query = "UPDATE recipes SET recipeName=:recipeName, $ingredientquery $stepquery numIngredients=:numIngredients, numSteps=:numSteps WHERE recipeId=:id";
+    echo $query;
     $statement = $db->prepare($query);
-    $statement->bindValue(':task', $task);
-    $statement->bindValue(':due', $due);
-    $statement->bindValue(':priority', $priority);
+
+    $statement->bindValue(':recipeName', $name);
+
+    foreach($stepsarray as $index => $step ) {
+        $statement->bindValue(':' . $step, $steps[$index]);
+    }
+
+    foreach($food as $index => $f){
+        $statement->bindValue(':' . $f, $ingredients[$index]);
+    }
+    $statement->bindValue(':numIngredients', $numIngredients);
+    $statement->bindValue(':numSteps', $numSteps);
     $statement->bindValue(':id', $id);
     $statement->execute();
     $statement->closeCursor();
-
 }
 ?>
 
