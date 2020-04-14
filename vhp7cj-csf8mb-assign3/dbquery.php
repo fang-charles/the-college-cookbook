@@ -1,6 +1,6 @@
 <?php
 
-function addRecipe($name, $ingredients, $steps)
+function addRecipe($name, $ingredients, $steps, $id)
 {
     global $db;
 
@@ -26,18 +26,16 @@ function addRecipe($name, $ingredients, $steps)
     $stepquery = ""; // string of step1, step2, ...
     $stepvalues = ""; // string of :step1, :step2, ...
     foreach ($stepsarray as $step) {
-        if($step != end($stepsarray)) {
-            $stepquery = $stepquery . $step . ", ";
-            $stepvalues = $stepvalues . ":" . $step . ", ";
-        }
-        else {
-            $stepquery = $stepquery . $step;
-            $stepvalues = $stepvalues . ":" . $step;
-        }
+        $stepquery = $stepquery . $step . ", ";
+        $stepvalues = $stepvalues . ":" . $step . ", ";
     }
 
-    $query = "INSERT INTO recipes (recipeName, $ingredientquery $stepquery)
-                VALUES (:name, $ingredientvalues $stepvalues)";
+    $numIngredients = count($ingredients);
+    $numSteps = count($steps);
+    $username = $_COOKIE['username'];
+
+    $query = "INSERT INTO recipes (recipeName, $ingredientquery $stepquery numIngredients, numSteps, username, recipeId)
+                VALUES (:name, $ingredientvalues $stepvalues :numIngredients, :numSteps, :username, :id)";
 
     $statement = $db->prepare($query);
     $statement->bindValue(':name', $name);
@@ -50,6 +48,10 @@ function addRecipe($name, $ingredients, $steps)
         $statement->bindValue(':' . $f, $ingredients[$index]);
     }
 
+    $statement->bindValue(':numIngredients', $numIngredients);
+    $statement->bindValue(':numSteps', $numSteps);
+    $statement->bindValue(':username', $username);
+    $statement->bindValue(':id', $id);
     $statement->execute();
     $statement->closeCursor();
 }
