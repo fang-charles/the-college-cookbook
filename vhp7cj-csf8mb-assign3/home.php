@@ -63,6 +63,7 @@ require('dbquery.php');
   <h1>The College Cookbook</h1>
 </div>
 <h1 align ="center">Hi, <font color="green" style="font-style:italic"><?php echo $_COOKIE['username']; ?></font></h1>
+
 <?php $recipes = getAllRecipes(); ?>
 <?php foreach($recipes as $recipe): ?>
 <div class="album py-5 bg-light">
