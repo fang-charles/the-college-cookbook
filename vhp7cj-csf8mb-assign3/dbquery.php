@@ -4,32 +4,54 @@ function addRecipe($name, $ingredients, $steps)
 {
     global $db;
 
-    $food = array();
+    $food = array(); // array of ingredient1 ,ingredient2, etc.
 
     for($i = 1; $i <= count($ingredients); $i++){
         $food[] = "ingredient" . $i;
     }
 
-    $ingredientquery = "";
-    foreach ($food as $f)
+    $ingredientquery = ""; // string of ingredient1, ingredient2, ...
+    $ingredientvalues = ""; // string of :ingredient1, :ingredient2, ...
+    foreach ($food as $f) {
         $ingredientquery = $ingredientquery . $f . ", ";
+        $ingredientvalues = $ingredientvalues . ":" . $f . ", ";
+    }
 
-    $s = array();
+    $stepsarray = array(); // array of step1, step2, ...
 
     for($i = 1; $i <= count($steps); $i++){
-        $s[] = "step" . $i;
+        $stepsarray[] = "step" . $i;
     }
 
-    $stepquery = "";
-    foreach ($s as $step) {
-        if($step == end($s))
-            break;
-        $step
+    $stepquery = ""; // string of step1, step2, ...
+    $stepvalues = ""; // string of :step1, :step2, ...
+    foreach ($stepsarray as $step) {
+        if($step != end($stepsarray)) {
+            $stepquery = $stepquery . $step . ", ";
+            $stepvalues = $stepvalues . ":" . $step . ", ";
+        }
+        else {
+            $stepquery = $stepquery . $step;
+            $stepvalues = $stepvalues . ":" . $step;
+        }
     }
-    $stepquery = $stepquery . end($s);
-    echo $stepquery;
-    echo $ingredientquery;
-    //$query = "INSERT INTO recipes (recipeName, ingredient)";
+
+    $query = "INSERT INTO recipes (recipeName, $ingredientquery $stepquery)
+                VALUES (:name, $ingredientvalues $stepvalues)";
+
+    $statement = $db->prepare($query);
+    $statement->bindValue(':name', $name);
+
+    foreach($stepsarray as $index => $step ) {
+        $statement->bindValue(':' . $step, $steps[$index]);
+    }
+
+    foreach($food as $index => $f){
+        $statement->bindValue(':' . $f, $ingredients[$index]);
+    }
+
+    $statement->execute();
+    $statement->closeCursor();
 
 
 
