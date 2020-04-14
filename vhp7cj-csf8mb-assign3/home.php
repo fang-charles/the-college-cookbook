@@ -39,13 +39,8 @@ require('dbquery.php');
   </style>
 </head>
 
-<<<<<<< HEAD
-<?php session_start();
-include('header.html');
-=======
 <?php session_start() ;
       include('header.html');
->>>>>>> af109d7366a8011355324561dc39b8d9b2d526aa
 ?>
 
 <script>
