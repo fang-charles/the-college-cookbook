@@ -9,11 +9,14 @@ require('dbquery.php');
   integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
   crossorigin="anonymous"
 />
+
 <?php session_start() ;
       include('header.html');
   ?>
 
+
 <body onload="initializeCookies()"> 
+
 <div style="text-align:center">
   <h1>Submit a Recipe</h1>
 </div>
@@ -109,15 +112,20 @@ require('dbquery.php');
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($_POST['recipename']))
         echo "Please fill out the recipe name. <br>";
+
     if (count($_POST['ingredient']) == 1 && $_POST['ingredient'][0] == "")
         echo "Please add an ingredient. <br>";
+
     if (count($_POST['steps']) == 1 && $_POST['steps'][0] == "")
         echo "Please add a step. <br>";
+
     if((!empty($_POST['recipename'])) && (count($_POST['ingredient']) >= 1 && $_POST['ingredient'][0] != "") && (count($_POST['steps']) >= 1 && $_POST['steps'][0] != "")) {
         addRecipe($_POST['recipename'], $_POST['ingredient'], $_POST['steps']);
+
         $_SESSION['recipename'] = $_POST['recipename'];
         $_SESSION['ingredient'] = $_POST['ingredient'];
         $_SESSION['steps'] = $_POST['steps'];
+        
         header("Location: " . "viewrecipe.php");
     }
 }

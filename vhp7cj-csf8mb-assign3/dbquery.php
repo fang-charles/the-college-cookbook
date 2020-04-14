@@ -52,9 +52,19 @@ function addRecipe($name, $ingredients, $steps)
 
     $statement->execute();
     $statement->closeCursor();
+}
 
+function getAllRecipes()
+{
+    global $db;
 
+    $query = "SELECT * FROM recipes";
+    $statement = $db->prepare($query);
+    $statement->execute();
 
+    $results = $statement->fetchAll();
+    $statement->closeCursor();
+    return $results;
 }
 ?>
 

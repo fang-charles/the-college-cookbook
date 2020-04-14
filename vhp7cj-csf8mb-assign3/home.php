@@ -1,3 +1,7 @@
+<?php
+require('connectdb.php');
+require('dbquery.php');
+?>
 <!-- Vivian Pham and Charles Fang -->
 
 <link
@@ -59,15 +63,18 @@
   <h1>Food is life</h1>
 </div>
 <h1 align ="center">Hi, <font color="green" style="font-style:italic"><?php echo $_COOKIE['username']; ?></font></h1>
-<div class="album py-5 bg-light"> 
+
+<?php $recipes = getAllRecipes(); ?>
+<?php foreach($recipes as $recipe): ?>
+<div class="album py-5 bg-light">
   <div class="container">
     <div class="row">
       <div class="col-md-6">
         <div class="card mb-6 box-shadow">
           <div class="card-body">
-            <h5 class="card-title">Chicken Soup</h5>
+            <h5 class="card-title"><?php echo $recipe['recipeName'] ?></h5>
             <p class="card-text">
-              Ingredients: Chicken, Chicken Broth, Salt, Herbs, Egg Noodles
+              Ingredients: <?php echo $recipe['ingredient1'] ?>
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
@@ -83,6 +90,7 @@
           </div>
         </div>
       </div>
+        <?php endforeach; ?>
       <div class="col-md-6">
         <div class="card mb-6 box-shadow">
           <div class="card-body">
