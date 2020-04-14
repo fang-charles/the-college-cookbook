@@ -1,4 +1,7 @@
-<?php require('connectdb.php'); ?>
+<?php
+require('connectdb.php');
+require('dbquery.php');
+?>
 <!-- Vivian Pham and Charles Fang -->
 <link
   rel="stylesheet"
@@ -11,7 +14,7 @@
   <h1>Submit a Recipe</h1>
 </div>
 
-<form action="recipe.php" method="post" name="recipeForm">
+<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" name="recipeForm">
   <div class="form-group">
     <label for="recipename">Recipe Name</label>
     <input type="text" id="recipename" class="form-control" name="recipename"/>
@@ -37,7 +40,7 @@
   <input type="button" class="btn btn-light" id="add1" value="Add Step" onclick="addStep()"/>
 
   <div>
-  <button class="btn btn-primary" onclick="validateForm()">Add Recipe!</button>
+  <button class="btn btn-primary" formnovalidate>Add Recipe!</button>
   </div>
 </form>
 
@@ -58,7 +61,7 @@
       document.getElementById("newStep").appendChild(input1);
   };
 
-  function validateForm() {
+  /*function validateForm() {
       var x = document.forms["recipeForm"]["name"].value;
       if (x == "") {
           alert("Name must be filled out!");
@@ -68,15 +71,24 @@
       var i = function(){ return numIngredients + " ingredients used."; };
       alert(i());
 
-  };
-
-  <?php
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        header("Location: " . 'viewrecipe.php');
-    }
-  ?>
-
+  };*/
 </script>
+
+
+<?php
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (empty($_POST['recipename']))
+        echo "Please fill out the recipe name. <br>";
+    if (count($_POST['ingredient']) == 1 && $_POST['ingredient'][0] == "")
+        echo "Please add an ingredient. <br>";
+    if (count($_POST['steps']) == 1 && $_POST['steps'][0] == "")
+        echo "Please add a step. <br>";
+    if((!empty($_POST['recipename'])) && (count($_POST['ingredient']) >= 1 && $_POST['ingredient'][0] != "") && (count($_POST['steps']) >= 1 && $_POST['steps'][0] != "")) {
+        addRecipe($_POST['recipename'], $_POST['ingredient'], $_POST['steps']);
+        //header("Location: " . "viewrecipe.php");
+    }
+}
+?>
 <!-- <form [formGroup]="recipe">
   <div class="form-group">
   <label>
