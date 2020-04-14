@@ -1,6 +1,6 @@
 <?php
 
-function addRecipe($name, $ingredients, $steps)
+function addRecipe($name, $ingredients, $steps, $id)
 {
     global $db;
 
@@ -34,8 +34,8 @@ function addRecipe($name, $ingredients, $steps)
     $numSteps = count($steps);
     $username = $_COOKIE['username'];
 
-    $query = "INSERT INTO recipes (recipeName, $ingredientquery $stepquery numIngredients, numSteps, username)
-                VALUES (:name, $ingredientvalues $stepvalues :numIngredients, :numSteps, :username)";
+    $query = "INSERT INTO recipes (recipeName, $ingredientquery $stepquery numIngredients, numSteps, username, recipeId)
+                VALUES (:name, $ingredientvalues $stepvalues :numIngredients, :numSteps, :username, :id)";
 
     $statement = $db->prepare($query);
     $statement->bindValue(':name', $name);
@@ -51,6 +51,7 @@ function addRecipe($name, $ingredients, $steps)
     $statement->bindValue(':numIngredients', $numIngredients);
     $statement->bindValue(':numSteps', $numSteps);
     $statement->bindValue(':username', $username);
+    $statement->bindValue(':id', $id);
     $statement->execute();
     $statement->closeCursor();
 }

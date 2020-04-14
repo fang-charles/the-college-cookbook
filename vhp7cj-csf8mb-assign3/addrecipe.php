@@ -14,13 +14,11 @@ require('dbquery.php');
       include('header.html');
   ?>
 
-
 <body onload="initializeCookies()"> 
 
 <div style="text-align:center">
   <h1>Submit a Recipe</h1>
 </div>
-
 
 <div class="col-xs-12 col-sm-12 col-lg-12">
 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" name="recipeForm">
@@ -93,20 +91,7 @@ require('dbquery.php');
       document.cookie = "numSteps=" + numSteps;
      }
   };
-
-  /*function validateForm() {
-      var x = document.forms["recipeForm"]["name"].value;
-      if (x == "") {
-          alert("Name must be filled out!");
-          return false;
-      }
-
-      var i = function(){ return numIngredients + " ingredients used."; };
-      alert(i());
-
-  };*/
 </script>
-
 
 <?php
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -120,7 +105,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Please add a step. <br>";
 
     if((!empty($_POST['recipename'])) && (count($_POST['ingredient']) >= 1 && $_POST['ingredient'][0] != "") && (count($_POST['steps']) >= 1 && $_POST['steps'][0] != "")) {
-        addRecipe($_POST['recipename'], $_POST['ingredient'], $_POST['steps']);
+        date_default_timezone_set("America/New_York");
+        $recipe_id = $_COOKIE['username'] . date("h:i:s");
+
+        addRecipe($_POST['recipename'], $_POST['ingredient'], $_POST['steps'], $recipe_id);
+        setcookie('recipe_id', $recipe_id, time()+36000);
 
         $_SESSION['recipename'] = $_POST['recipename'];
         $_SESSION['ingredient'] = $_POST['ingredient'];
