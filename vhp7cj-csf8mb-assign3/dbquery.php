@@ -1,3 +1,6 @@
+
+<meta name="author" content="Vivian Pham">
+
 <?php
 
 function addRecipe($name, $ingredients, $steps, $id)

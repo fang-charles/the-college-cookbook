@@ -1,4 +1,7 @@
+
+<meta name="author" content="Vivian Pham">
 <?php
+
 
 /******************************/
 // More info on connecting PHP and DB

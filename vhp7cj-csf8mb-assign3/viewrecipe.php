@@ -1,4 +1,5 @@
 <!-- Vivian Pham and Charles Fang -->
+<meta name="author" content="Vivian Pham / Charles Fang">
 <!DOCTYPE html>
 <html lang="en">
 
