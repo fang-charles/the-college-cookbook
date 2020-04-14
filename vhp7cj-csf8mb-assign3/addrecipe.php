@@ -1,6 +1,6 @@
 <?php
 require('connectdb.php');
-//require('dbquery.php');
+require('dbquery.php');
 ?>
 <!-- Vivian Pham and Charles Fang -->
 <link
@@ -9,7 +9,9 @@ require('connectdb.php');
   integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
   crossorigin="anonymous"
 />
-
+<?php session_start() ;
+    
+  ?>
 <div style="text-align:center">
   <h1>Submit a Recipe</h1>
 </div>
@@ -51,19 +53,33 @@ require('connectdb.php');
 
 <script>
   var numIngredients = 1;
+  var numSteps = 1;
+  var limit = 10;
+
   function addIngredient(){
+    if (numIngredients == limit)  {
+          alert("You can only add up to " + counter + " ingredients");
+     }
+     else {
       var input = document.createElement("div");
       input.setAttribute('class', 'form-group');
       input.innerHTML = "<input type='text' id='ingredient' class='form-control' name='ingredient[]' required/>";
       document.getElementById("newElementId").appendChild(input);
       numIngredients++;
+     }
   };
 
   function addStep(){
+    if (numSteps == limit)  {
+          alert("You can only add up to " + limit + " steps");
+     }
+     else {
       var input1 = document.createElement("div");
       input1.setAttribute('class', 'form-group');
       input1.innerHTML = "<input type='text' id='steps' class='form-control' name='steps[]' required/>";
       document.getElementById("newStep").appendChild(input1);
+      numSteps++;
+     }
   };
 
   /*function validateForm() {
@@ -90,6 +106,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Please add a step. <br>";
     if((!empty($_POST['recipename'])) && (count($_POST['ingredient']) >= 1 && $_POST['ingredient'][0] != "") && (count($_POST['steps']) >= 1 && $_POST['steps'][0] != "")) {
         addRecipe($_POST['recipename'], $_POST['ingredient'], $_POST['steps']);
+        $_SESSION['numSteps'] = $_POST['numSteps'];
+        $_SESSION['numIngredients'] = $_POST['numIngredients'];
         header("Location: " . "viewrecipe.php");
     }
 }
