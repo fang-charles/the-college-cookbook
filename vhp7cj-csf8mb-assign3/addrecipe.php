@@ -1,6 +1,6 @@
 <?php
 require('connectdb.php');
-require('dbquery.php');
+//require('dbquery.php');
 ?>
 <!-- Vivian Pham and Charles Fang -->
 <link
@@ -14,11 +14,15 @@ require('dbquery.php');
   <h1>Submit a Recipe</h1>
 </div>
 
+
+<div class="col-xs-12 col-sm-12 col-lg-12">
 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" name="recipeForm">
   <div class="form-group">
+  <div class="col-xs-6 col-xs-offset-3">
     <label for="recipename">Recipe Name</label>
     <input type="text" id="recipename" class="form-control" name="recipename"/>
     <span class="error" id="recipename-note"></span>
+</div>
   </div>
 
   <div class="form-group">
@@ -43,6 +47,7 @@ require('dbquery.php');
   <button class="btn btn-primary" formnovalidate>Add Recipe!</button>
   </div>
 </form>
+</div>
 
 <script>
   var numIngredients = 1;
