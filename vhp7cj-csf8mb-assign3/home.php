@@ -58,7 +58,7 @@
 >
   <h1>The College Cookbook</h1>
 </div>
-<h1 align ="center">Hi, <font color="green" style="font-style:italic"><?php echo $_SESSION['username']; ?></font></h1>
+<h1 align ="center">Hi, <font color="green" style="font-style:italic"><?php echo $_COOKIE['username']; ?></font></h1>
 <div class="album py-5 bg-light">
   <div class="container">
     <div class="row">

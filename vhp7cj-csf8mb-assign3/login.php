@@ -86,14 +86,13 @@
       <input type="submit" value="Enter the wonderful world of wonderful food!" class="btn btn-light"  />   
     </form>
 
-    <?php session_start();  ?>
 </body>
 
 <?php
 
     if (isset($_GET['username'])){
     if (($_SERVER['REQUEST_METHOD']=="GET") && (strlen($_GET['username']) >0)){
-        $_SESSION['username'] = $_GET['username'];
+        setcookie('username', $_GET['username'], time()+36000);
         header('Location: home.php');
     }
   }
