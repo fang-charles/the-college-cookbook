@@ -14,7 +14,7 @@ require('dbquery.php');
       include('header.html');
   ?>
 
-<body onload="initializeCookies()"> 
+<body onload="initializeCookies()" > 
 
 <div style="text-align:center">
   <h1>Submit a Recipe</h1>
@@ -119,6 +119,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
+
+<?php 
+include('footer.html');
+?>
+
 <!-- <form [formGroup]="recipe">
   <div class="form-group">
   <label>

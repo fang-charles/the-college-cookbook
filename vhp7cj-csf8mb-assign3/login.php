@@ -78,7 +78,7 @@
 
 </head>
 
-<body>
+<body >
 
   <div>
     <h1>Welcome to The College Cookbook!</h1>
