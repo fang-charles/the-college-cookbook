@@ -2,25 +2,7 @@
   <app-header></app-header>
 
   <div class="container">
-    <!--{{ orderForm.value | json }}-->
-    <!--<br/>-->
-    <!--Email: {{ orderForm.value.email }}-->
-    <!--<br/>-->
-    <!--Data from order model {{ orderModel | json }}-->
-
-    <!--<hr/>-->
-    <!--Is name input valid? {{ name.valid }}-->
-    <!--<br/>-->
-    <!--Has name input been visited? {{ name.touched }}-->
-    <!--<br/>-->
-    <!--Has name input been changed? {{ name.dirty }}-->
-    <!--<br/>-->
-    <!--<hr/>-->
-    <!--Confirm: {{ confirm_msg }} <br/>-->
-    <!--Data submitted: {{ data_submitted | json }}-->
-    <!--<hr/>-->
-
-    <form #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm.value)">
+     <form #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm.value)">
       <div class="form-group">
         <label>Search for your favorite recipe: </label>
         <input
@@ -95,10 +77,10 @@
   </div>
 
   <!-- Recipe NgFor Test-->
-  <div *ngFor="let recipe of recipeArray">
     <div class="album py-5 bg-light">
       <div class="container">
         <div class="row">
+          <ng-container *ngFor="let recipe of recipeArray">
           <div class="col-md-6">
             <div class="card mb-6 box-shadow">
               <div class="card-body">
@@ -141,7 +123,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </ng-container>
       </div>
     </div>
   </div>
