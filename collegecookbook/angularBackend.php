@@ -17,13 +17,15 @@ $postdata = file_get_contents("php://input");
 // (this example simply extracts the data and restructures them back)
 
 // Extract json format to PHP array
+
 $request = json_decode($postdata);
 
 $data = [];
 $data[0]['length'] = $content_length;
-foreach ($request as $k => $v)
+
+foreach ($request as $key => $value)
 {
-  $data[0]['post_'.$k] = $v;
+  $data[0][$key] = $value;
 }
 
 // Send response (in json format) back the front end
