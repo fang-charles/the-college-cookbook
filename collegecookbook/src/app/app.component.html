@@ -27,7 +27,7 @@
   <form #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm.value)">
    <div class="form-group">
      <label>Search for your favorite recipe: </label>
-     <input type="text" class="form-control" name="searchterm"
+     <input type="text" class="form-control" name="searchTerm"
             required
             #name="ngModel"
             [class.is-invalid]="name.invalid && name.touched"
@@ -69,7 +69,12 @@
      <!-- If confirm_msg is not empty, display the response from the PHP backend. -->
    {{ (confirm_msg.length > 0)? (responsedata | json) : 'Display response from PHP backend' }}
    </font>
- 
+   <hr/>
+   Response from PHP 2:<br/>
+   <font color="green" style="font-style:italic">
+     <!-- If confirm_msg is not empty, display the response from the PHP backend. -->
+   {{ (confirm_msg.length > 0)? (responsedata) : 'Display response from PHP backend' }}
+   </font>
  </div>
  
  

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Order } from './order';
+import { Order } from './search/order';
 
 @Component({
   selector: 'app-root',
@@ -39,6 +39,7 @@ export class AppComponent {
 
      // Convert the form data to json format
      let params = JSON.stringify(form);
+     console.log('Params: ', params);
 
      // To send a GET request, use the concept of URL rewriting to pass data to the backend
      // this.http.get<Order>('http://localhost/cs4640/inclass11/ngphp-get.php?str='+params)

@@ -23,6 +23,7 @@ $request = json_decode($postdata);
 $data = [];
 $data[0]['length'] = $content_length;
 
+echo $request->searchTerm;
 foreach ($request as $key => $value)
 {
   $data[0][$key] = $value;

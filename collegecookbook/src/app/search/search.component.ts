@@ -9,7 +9,7 @@ import { Order } from './order';
 })
 
 
-export class AppComponent {
+export class SearchComponent {
   title = 'collegecookbook';
   authors = 'your name';
 
