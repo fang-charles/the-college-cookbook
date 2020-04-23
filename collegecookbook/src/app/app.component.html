@@ -78,9 +78,9 @@
 
   <!-- Recipe NgFor Test-->
     <div class="album py-5 bg-light">
-      <div *ngFor="let recipe of recipeArray">
       <div class="container">
         <div class="row">
+          <ng-container *ngFor="let recipe of recipeArray">
           <div class="col-md-6">
             <div class="card mb-6 box-shadow">
               <div class="card-body">
@@ -120,7 +120,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </ng-container>
       </div>
     </div>
   </div>
