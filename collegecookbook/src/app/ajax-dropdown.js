@@ -1,13 +1,5 @@
-<body>
-  <app-header></app-header>
-
-  <input type="text" id="ajax" list="json-datalist" placeholder="e.g. datalist">
-  <datalist id="json-datalist"></datalist>
-
-
-  <script>
 // Get the <datalist> and <input> elements.
-  var dataList = document.getElementById('json-datalist');
+var dataList = document.getElementById('json-datalist');
 var input = document.getElementById('ajax');
 
 // Create a new XMLHttpRequest.
@@ -43,9 +35,5 @@ request.onreadystatechange = function(response) {
 input.placeholder = "Loading options...";
 
 // Set up and make the request.
-request.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
+request.open('GET', 'html-elements.json', true);
 request.send();
-
-  </script>
-  <app-footer></app-footer>
-</body>
