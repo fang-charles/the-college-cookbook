@@ -1,3 +1,4 @@
+function makeAjaxCall(){
 // Get the <datalist> and <input> elements.
 var dataList = document.getElementById('json-datalist');
 var input = document.getElementById('ajax');
@@ -23,7 +24,7 @@ request.onreadystatechange = function(response) {
       });
 
       // Update the placeholder text.
-      input.placeholder = "e.g. datalist";
+      input.placeholder = "e.g. datalist222";
     } else {
       // An error occured :(
       input.placeholder = "Couldn't load datalist options :(";
@@ -35,5 +36,8 @@ request.onreadystatechange = function(response) {
 input.placeholder = "Loading options...";
 
 // Set up and make the request.
-request.open('GET', 'html-elements.json', true);
+request.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
 request.send();
+}
+
+makeAjaxCall();
