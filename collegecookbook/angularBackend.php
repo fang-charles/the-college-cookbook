@@ -29,13 +29,43 @@ $searchTerm = $request['searchTerm'];
 
 //maps key: 'searchTerm' to value $searchTerm
 //$data[0]['searchTerm'] = $searchTerm;
+$recipes = searchRecipe($searchTerm);
+$i = 0;
+foreach($recipes as $recipe):
+  $data[$i]['recipeName'] = $recipe['recipeName'];
+  $data[$i]['ingredient1'] = $recipe['ingredient1'];
+  $data[$i]['ingredient2'] = $recipe['ingredient2'];
+  $data[$i]['ingredient3'] = $recipe['ingredient3'];
+  $data[$i]['ingredient4'] = $recipe['ingredient4'];
+  $data[$i]['ingredient5'] = $recipe['ingredient5'];
+  $data[$i]['ingredient6'] = $recipe['ingredient6'];
+  $data[$i]['ingredient7'] = $recipe['ingredient7'];
+  $data[$i]['ingredient8'] = $recipe['ingredient8'];
+  $data[$i]['ingredient9'] = $recipe['ingredient9'];
+  $data[$i]['ingredient10'] = $recipe['ingredient10'];
+  $data[$i]['step1'] = $recipe['step1'];
+  $data[$i]['step2'] = $recipe['step2'];
+  $data[$i]['step3'] = $recipe['step3'];
+  $data[$i]['step4'] = $recipe['step4'];
+  $data[$i]['step5'] = $recipe['step5'];
+  $data[$i]['step6'] = $recipe['step6'];
+  $data[$i]['step7'] = $recipe['step7'];
+  $data[$i]['step8'] = $recipe['step8'];
+  $data[$i]['step9'] = $recipe['step9'];
+  $data[$i]['step10'] = $recipe['step10'];
+  $data[$i]['numIngredients'] = $recipe['numIngredients'];
+  $data[$i]['numSteps'] = $recipe['numSteps'];
+  $data[$i]['username'] = $recipe['username'];
+  $data[$i]['recipeId'] = $recipe['recipeId'];
+  $i++;
+endforeach;
 
-$data[0]['searchTerm']=searchRecipe($searchTerm);
+
 //send it to mysql and get data back somehow
 //manually
 
 //stuff that gets returned in JSON
-echo json_encode(['content'=>$data]);
+echo json_encode($data);
 
 
 
