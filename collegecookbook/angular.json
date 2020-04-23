@@ -3,7 +3,7 @@
   "version": 1, 
   "newProjectRoot": "projects",
   "projects": {
-    "cookbook": {
+    "collegecookbook": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cookbook",
+            "outputPath": "dist/collegecookbook",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cookbook:build"
+            "browserTarget": "collegecookbook:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "cookbook:build:production"
+              "browserTarget": "collegecookbook:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cookbook:build"
+            "browserTarget": "collegecookbook:build"
           }
         },
         "test": {
@@ -110,15 +110,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "cookbook:serve"
+            "devServerTarget": "collegecookbook:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "cookbook:serve:production"
+              "devServerTarget": "collegecookbook:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "cookbook"
+  "defaultProject": "collegecookbook"
 }
