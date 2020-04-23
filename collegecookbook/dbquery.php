@@ -138,10 +138,10 @@ function searchRecipe($searchTerm)
 {
   global $db;
 
-  $query = "SELECT * FROM recipes WHERE recipeName = :searchTerm" ;
+  $query = "SELECT * FROM recipes WHERE recipeName LIKE :searchTerm" ;
 
   $statement = $db->prepare($query);
-  $statement->bindValue(':searchTerm', $searchTerm);
+  $statement->bindValue(':searchTerm', '%' . $searchTerm . '%');
   $statement->execute();
 
   $results = $statement->fetchAll();
