@@ -25,6 +25,11 @@ export class AppComponent {
   orderArray = [new Order('Order 1'),
                 new Order('Order 2'),
                 new Order('Order 3')
+    ];
+
+    recipeArray = [
+      new Recipe('Italian Beef', 'Beef', 'Broth', '', '', '', '', '', '', '', '', 'Put in pot', 'Cook for 10 min', 'Eat while hot','','','','','','','',2,3,'Charles','Charles04232020'),
+      new Recipe('Hot Dog', 'meat', 'bun', '', '', '', '', '', '', '', '', 'boil', 'Put hot dog in bun','','','','','','','','',2,2,'Charles','Charles04232020')         
     ]
 
   confirm_msg = '';
@@ -55,6 +60,8 @@ export class AppComponent {
           // Receive a response successfully, do something here
           // console.log('Response from backend ', data);
           this.responsedata = data;     // assign response to responsedata property to bind to screen later
+
+
           this.orderArray = [new Order('Order 4'),
           new Order('Order 5'),
           new Order('Order 6')
