@@ -85,8 +85,8 @@
             <div class="card mb-6 box-shadow">
               <div class="card-body">
                 <!-- This was a deliberate design choice. See Steps for better solution-->
-                <h5 class="card-title" [ngStyle] = "{'font-family': recipe.getFont('recipeName'), 'color': recipe.getColor('recipeName')}">{{recipe.recipeName}}</h5>
-                <div class="card-text" [ngSwitch] =[recipe.numIngredients]>
+                <h5 class="card-title" [ngStyle] = "{'font-family': recipe.getFont('recipeName'), 'color': recipe.getColor('recipeName'), 'font-weight': 'bold'}">{{recipe.recipeName}}</h5>
+                <div class="card-text" [ngSwitch] =[recipe.numIngredients] [ngClass]="{borderedIngredients: true}">
                   <div *ngSwitchCase=1>Ingredients: {{ recipe.ingredient1}}</div>
                   <div *ngSwitchCase=2>Ingredients: {{ recipe.ingredient1 }}, {{ recipe.ingredient2 }}</div>
                   <div *ngSwitchCase=3>Ingredients: {{ recipe.ingredient1 }}, {{ recipe.ingredient2 }}, {{ recipe.ingredient3 }}</div>

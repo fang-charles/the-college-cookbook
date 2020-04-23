@@ -85,13 +85,17 @@
     <h1>Welcome to The College Cookbook!</h1>
     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get" name="loginForm">
       Please enter your name below: </br>
-      <input type="text" name="username" placeholder="Gordon Ramsay" maxlength="20" required /> <br />
+      <input type="text" name="username" id ="username" placeholder="Gordon Ramsay" maxlength="20" required /> <br />
       <input type="submit" value="Enter the wonderful world of wonderful food!" class="btn btn-light"  />   
     </form>
 
+
+    <input type="text" id="ajax" list="json-datalist" placeholder="e.g. datalist">
+    <datalist id="json-datalist"></datalist>
 </body>
 
 <?php
+    require('ajax-login.js');
 
     if (isset($_GET['username'])){
     if (($_SERVER['REQUEST_METHOD']=="GET") && (strlen($_GET['username']) >0) && (strlen($_GET['username']) <= 20)){
