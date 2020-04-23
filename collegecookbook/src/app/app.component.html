@@ -84,12 +84,20 @@
           <div class="col-md-6">
             <div class="card mb-6 box-shadow">
               <div class="card-body">
+                <!-- This was a deliberate design choice. See Steps for better solution-->
                 <h5 class="card-title">{{recipe.recipeName}}</h5>
                 <div class="card-text" [ngSwitch] =[recipe.numIngredients]>
                   <div *ngSwitchCase=1>Ingredients: {{ recipe.ingredient1}}</div>
-                  <div *ngSwitchCase=2>Ingredients: {{ recipe.ingredient1 }} , {{ recipe.ingredient2 }}</div>
-                  <div *ngSwitchCase=3>Ingredients: {{ recipe.ingredient1 }} , {{ recipe.ingredient2 }}, {{ recipe.ingredient3 }}</div>
-                  <div *ngSwitchDefault>Default case reached</div>
+                  <div *ngSwitchCase=2>Ingredients: {{ recipe.ingredient1 }}, {{ recipe.ingredient2 }}</div>
+                  <div *ngSwitchCase=3>Ingredients: {{ recipe.ingredient1 }}, {{ recipe.ingredient2 }}, {{ recipe.ingredient3 }}</div>
+                  <div *ngSwitchCase=4>Ingredients: {{ recipe.ingredient1 }}, {{ recipe.ingredient2 }}, {{ recipe.ingredient3 }}, {{ recipe.ingredient4 }} </div>
+                  <div *ngSwitchCase=5>Ingredients: {{ recipe.ingredient1 }}, {{ recipe.ingredient2 }}, {{ recipe.ingredient3 }}, {{ recipe.ingredient4 }} , {{ recipe.ingredient5 }}</div>
+                  <div *ngSwitchCase=6>Ingredients: {{ recipe.ingredient1 }}, {{ recipe.ingredient2 }}, {{ recipe.ingredient3 }}, {{ recipe.ingredient4 }} , {{ recipe.ingredient5 }}, {{ recipe.ingredient6 }}</div>
+                  <div *ngSwitchCase=7>Ingredients: {{ recipe.ingredient1 }}, {{ recipe.ingredient2 }}, {{ recipe.ingredient3 }}, {{ recipe.ingredient4 }} , {{ recipe.ingredient5 }}, {{ recipe.ingredient6 }}, {{ recipe.ingredient7 }}</div>
+                  <div *ngSwitchCase=8>Ingredients: {{ recipe.ingredient1 }}, {{ recipe.ingredient2 }}, {{ recipe.ingredient3 }}, {{ recipe.ingredient4 }} , {{ recipe.ingredient5 }}, {{ recipe.ingredient6 }}, {{ recipe.ingredient7 }} , {{ recipe.ingredient8 }}</div>
+                  <div *ngSwitchCase=9>Ingredients: {{ recipe.ingredient1 }}, {{ recipe.ingredient2 }}, {{ recipe.ingredient3 }}, {{ recipe.ingredient4 }} , {{ recipe.ingredient5 }}, {{ recipe.ingredient6 }}, {{ recipe.ingredient7 }} , {{ recipe.ingredient8 }}, {{ recipe.ingredient9 }} </div>
+                  <div *ngSwitchCase=10>Ingredients: {{ recipe.ingredient1 }}, {{ recipe.ingredient2 }}, {{ recipe.ingredient3 }}, {{ recipe.ingredient4 }} , {{ recipe.ingredient5 }}, {{ recipe.ingredient6 }}, {{ recipe.ingredient7 }} , {{ recipe.ingredient8 }}, {{ recipe.ingredient9 }} , {{ recipe.ingredient10 }}</div>
+                  <div *ngSwitchDefault>Error: Default case reached</div>
                   </div>
                 <p class="card-text">Steps: <br /></p>
                 <div class="d-flex justify-content-between align-items-center">
