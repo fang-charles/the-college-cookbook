@@ -1,6 +1,3 @@
-
-<meta name="author" content="Vivian Pham">
-
 <?php
 
 function addRecipe($name, $ingredients, $steps, $id)
@@ -135,6 +132,21 @@ function updateRecipe($name, $ingredients, $steps, $id)
     $statement->bindValue(':id', $id);
     $statement->execute();
     $statement->closeCursor();
+}
+
+function searchRecipe($searchTerm)
+{
+  global $db;
+
+  $query = "SELECT * FROM recipes WHERE recipeName = :searchTerm" ;
+
+  $statement = $db->prepare($query);
+  $statement->bindValue(':searchTerm', $searchTerm);
+  $statement->execute();
+
+  $results = $statement->fetchAll();
+  $statement->closeCursor();
+  return $results;
 }
 ?>
 

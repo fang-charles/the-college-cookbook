@@ -1,5 +1,3 @@
-
-<meta name="author" content="Vivian Pham">
 <?php
 
 

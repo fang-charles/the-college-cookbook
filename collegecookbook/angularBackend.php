@@ -1,11 +1,12 @@
 <?php
+require('connectdb.php');
+require('dbquery.php');
 
 header('Access-Control-Allow-Origin: http://localhost:4200');
 // header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding');
 header('Access-Control-Max-Age: 1000');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT');
-
 
 // get the size of incoming data
 $content_length = (int) $_SERVER['CONTENT_LENGTH'];
@@ -27,10 +28,11 @@ $data = [];
 $searchTerm = $request['searchTerm'];
 
 //maps key: 'searchTerm' to value $searchTerm
-$data[0]['searchTerm'] = $searchTerm;
+//$data[0]['searchTerm'] = $searchTerm;
 
+$data[0]['searchTerm']=searchRecipe($searchTerm);
 //send it to mysql and get data back somehow
-//manually 
+//manually
 
 //stuff that gets returned in JSON
 echo json_encode(['content'=>$data]);
