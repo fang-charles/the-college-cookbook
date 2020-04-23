@@ -40,5 +40,19 @@ export class Recipe {
 		return stepString;
 	}
 
+  getColor(type) {
+    switch (type) {
+      case 'recipeName':
+        return 'blue';
+    }
+  }
+
+  getFont(type){
+	  switch (type) {
+      case 'recipeName':
+        return 'raleway';
+    }
+  }
+
  }
- 
+

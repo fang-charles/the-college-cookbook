@@ -85,7 +85,7 @@
             <div class="card mb-6 box-shadow">
               <div class="card-body">
                 <!-- This was a deliberate design choice. See Steps for better solution-->
-                <h5 class="card-title">{{recipe.recipeName}}</h5>
+                <h5 class="card-title" [ngStyle] = "{'font-family': recipe.getFont('recipeName'), 'color': recipe.getColor('recipeName')}">{{recipe.recipeName}}</h5>
                 <div class="card-text" [ngSwitch] =[recipe.numIngredients]>
                   <div *ngSwitchCase=1>Ingredients: {{ recipe.ingredient1}}</div>
                   <div *ngSwitchCase=2>Ingredients: {{ recipe.ingredient1 }}, {{ recipe.ingredient2 }}</div>
@@ -99,8 +99,8 @@
                   <div *ngSwitchCase=10>Ingredients: {{ recipe.ingredient1 }}, {{ recipe.ingredient2 }}, {{ recipe.ingredient3 }}, {{ recipe.ingredient4 }} , {{ recipe.ingredient5 }}, {{ recipe.ingredient6 }}, {{ recipe.ingredient7 }} , {{ recipe.ingredient8 }}, {{ recipe.ingredient9 }} , {{ recipe.ingredient10 }}</div>
                   <div *ngSwitchDefault>Error: Default case reached</div>
                   </div>
-                <p class="card-text">Steps:</p>
-                <span [innerHTML]="recipe.getSteps()"></span>
+                <div class="card-text">Steps:</div>
+                <p [innerHTML]="recipe.getSteps()"></p>
 
 
                 <div class="d-flex justify-content-between align-items-center">
