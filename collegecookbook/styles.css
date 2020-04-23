@@ -1,0 +1,16 @@
+body {
+    background-color: white;
+}
+
+h1 {
+    color: navy;
+    text-align: center;
+
+}
+
+h5 {
+    color: black;
+    margin-left: 20px;
+    font-style: italic;
+    padding: 20px;
+}
