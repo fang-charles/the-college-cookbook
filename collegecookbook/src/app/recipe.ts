@@ -31,8 +31,13 @@ export class Recipe {
 	){}
 
 	getSteps(){
-		
-		return "";
+		let stepString ="";
+		let key = "step";
+		for (let i = 1; i <= this.numSteps; i++){
+			key = "step" + i;
+			stepString += i + ". " + this[key] + "<br> ";
+		}
+		return stepString;
 	}
 
  }
