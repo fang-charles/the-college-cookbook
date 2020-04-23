@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Order } from './order';
+import { Recipe } from './recipe';
 
 @Component({
   selector: 'app-root',
@@ -49,6 +50,11 @@ export class AppComponent {
           // Receive a response successfully, do something here
           // console.log('Response from backend ', data);
           this.responsedata = data;     // assign response to responsedata property to bind to screen later
+
+          //json parse to js object
+          //feed it into constructure
+          //show into array
+
      }, (error) => {
           // An error occurs, handle an error in some way
           console.log('Error ', error);
