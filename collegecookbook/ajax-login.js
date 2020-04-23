@@ -1,8 +1,6 @@
-function makeAjaxCall(username) {
-  if (username.length == 0) {
-    //document.getElementById ("txtHint").innerHTML = "";
-    return;
-  }
+function makeAjaxCall() {
+
+  var username = document.getElementById("username").value;
 
   // 2. Create an instance of an XMLHttpRequest object
   xhr = GetXmlHttpObject();
@@ -44,21 +42,21 @@ function makeAjaxCall(username) {
   // 6. Make an asynchronous request
 
   //xhr.open('GET', backend_url, true);
-  xhr.open("POST", backend_url, true);
-  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
+  //xhr.open("POST", backend_url, true);
+  //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   // 7. The request is sent to the server
   //xhr.send(null);
-  xhr.send(data_tosend);
+  xhr.send();
 }
 
 // 1. Add event listener to the input boxes.
 //    Call makeAjaxCall() when the event happens
 
-document.getElementById("username").addEventListener("keyup", function () {
-  var username = document.getElementById("username").value;
-  makeAjaxCall(username);
-});
+
+  makeAjaxCall();
+
 
 // The callback function processes the response from the server
 function generateOptions(str) {

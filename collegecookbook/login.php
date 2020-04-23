@@ -83,9 +83,9 @@
 
   <div>
     <h1>Welcome to The College Cookbook!</h1>
-    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get" name="loginForm">
+    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" name="loginForm">
       Please enter your name below: </br>
-      <input type="text" name="username" id ="username" placeholder="Gordon Ramsay" maxlength="20" required /> <br />
+      <input type="text" name="username" id ="username" placeholder="Gordon Ramsay" value ="Charles" maxlength="20" required /> <br />
       <input type="submit" value="Enter the wonderful world of wonderful food!" class="btn btn-light"  />   
     </form>
 
@@ -94,12 +94,12 @@
     <datalist id="json-datalist"></datalist>
 </body>
 
+<script type="text/javascript" src="ajax-login.js"></script>
 <?php
-    require('ajax-login.js');
 
-    if (isset($_GET['username'])){
-    if (($_SERVER['REQUEST_METHOD']=="GET") && (strlen($_GET['username']) >0) && (strlen($_GET['username']) <= 20)){
-        setcookie('username', $_GET['username'], time()+36000);
+    if (isset($_POST['username'])){
+    if (($_SERVER['REQUEST_METHOD']=="POST") && (strlen($_POST['username']) >0) && (strlen($_POST['username']) <= 20)){
+        setcookie('username', $_POST['username'], time()+36000);
         header('Location: home.php');
     }
   }
