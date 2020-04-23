@@ -41,7 +41,7 @@ require('dbquery.php');
 </head>
 
 <?php session_start();
-include('header.html');
+include('./src/app/components/header/header.component.html');
 ?>
 
 <script>
@@ -66,12 +66,12 @@ include('header.html');
     <div class="container">
       <div class="row">
 		<?php foreach ($recipes as $recipe) : ?>
-			
-			<?php 
+
+			<?php
 			if ($recipe['username'] != $_COOKIE['username']){
 				continue;
-			}	
-				
+			}
+
 			?>
           <div class="col-md-6">
             <div class="card mb-6 box-shadow">
@@ -118,6 +118,6 @@ include('header.html');
   </div>
 </body>
 
-<?php 
+<?php
 include('footer.html');
 ?>

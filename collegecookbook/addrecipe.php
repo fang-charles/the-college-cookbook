@@ -12,10 +12,10 @@ require('dbquery.php');
 />
 
 <?php session_start() ;
-      include('header.html');
+include('./src/app/components/header/header.component.html');
   ?>
 
-<body onload="initializeCookies()" > 
+<body onload="initializeCookies()" >
 
 <div style="text-align:center">
   <h1>Submit a Recipe</h1>
@@ -121,7 +121,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<?php 
+<?php
 include('footer.html');
 ?>
 
