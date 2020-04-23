@@ -29,5 +29,11 @@ export class Recipe {
 	   public username: string,
 	   public recipeId: string
 	){}
+
+	getSteps(){
+		
+		return "";
+	}
+
  }
  

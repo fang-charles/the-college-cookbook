@@ -29,7 +29,8 @@ export class AppComponent {
 
     recipeArray = [
       new Recipe('Italian Beef', 'Beef', 'Broth', '', '', '', '', '', '', '', '', 'Put in pot', 'Cook for 10 min', 'Eat while hot','','','','','','','',2,3,'Charles','Charles04232020'),
-      new Recipe('Hot Dog', 'meat', 'bun', '', '', '', '', '', '', '', '', 'boil', 'Put hot dog in bun','','','','','','','','',2,2,'Charles','Charles04232020')         
+      new Recipe('Hot Dog', 'meat', 'bun', '', '', '', '', '', '', '', '', 'boil', 'Put hot dog in bun','','','','','','','','',2,2,'Charles','Charles04232020'),
+      new Recipe('Test Recipe', 'i1', 'i2', 'i3', 'i4', 'i5', 'i6', 'i7', 'i8', 'i9', 'i10', 's1', 's2','s3','s4','s5','s6','s7','s8','s9','s10',10,10,'Charles','Charles04232020')         
     ]
 
   confirm_msg = '';
