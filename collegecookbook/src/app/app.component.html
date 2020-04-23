@@ -48,6 +48,7 @@
  </form>
  
  <hr/>
+ 
  <h3>Order Confirmation</h3>
  Confirm:
    <font color="green" style="font-style:italic">
@@ -70,11 +71,7 @@
    {{ (confirm_msg.length > 0)? (responsedata | json) : 'Display response from PHP backend' }}
    </font>
    <hr/>
-   Response from PHP 2:<br/>
-   <font color="green" style="font-style:italic">
-     <!-- If confirm_msg is not empty, display the response from the PHP backend. -->
-   {{ (confirm_msg.length > 0)? (responsedata) : 'Display response from PHP backend' }}
-   </font>
+
  </div>
  
  

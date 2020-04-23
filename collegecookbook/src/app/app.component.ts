@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Order } from './search/order';
+import { Order } from './order';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +26,7 @@ export class AppComponent {
 
   confirmOrder(data) {
      console.log(data);
-     this.confirm_msg = 'Thank you, ' + data.searchTerm;
+     this.confirm_msg = 'Search Term: ' + data.searchTerm;
   }
 
 

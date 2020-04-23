@@ -18,18 +18,29 @@ $postdata = file_get_contents("php://input");
 
 // Extract json format to PHP array
 
-$request = json_decode($postdata);
+$request = json_decode($postdata, true);
 
 $data = [];
-$data[0]['length'] = $content_length;
+//$data[0]['length'] = $content_length;
 
-echo $request->searchTerm;
+//actual string value of input bar
+$searchTerm = $request['searchTerm'];
+
+//maps key: 'searchTerm' to value $searchTerm
+$data[0]['searchTerm'] = $searchTerm;
+
+//stuff that gets returned in JSON
+echo json_encode(['content'=>$data]);
+
+
+/*
 foreach ($request as $key => $value)
 {
   $data[0][$key] = $value;
 }
+*/
 
 // Send response (in json format) back the front end
-echo json_encode(['content'=>$data]);
+//echo json_encode(['content'=>$data]);
 ?>
 
