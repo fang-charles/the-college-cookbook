@@ -85,8 +85,8 @@
             <div class="card mb-6 box-shadow">
               <div class="card-body">
                 <!-- This was a deliberate design choice. See Steps for better solution-->
-                <h5 class="card-title" >{{recipe.recipeName}}</h5>
-                <div class="card-text" [ngSwitch] =[recipe.numIngredients] [ngClass]="{borderedIngredients: true}">
+                <h5 class="card-title" [ngStyle] = "{'font-family': recipe.getFont('recipeName'), 'color': recipe.getColor('recipeName')}">{{recipe.recipeName}}</h5>
+                <div class="card-text" [ngSwitch] =[recipe.numIngredients]>
                   <div *ngSwitchCase=1>Ingredients: {{ recipe.ingredient1}}</div>
                   <div *ngSwitchCase=2>Ingredients: {{ recipe.ingredient1 }}, {{ recipe.ingredient2 }}</div>
                   <div *ngSwitchCase=3>Ingredients: {{ recipe.ingredient1 }}, {{ recipe.ingredient2 }}, {{ recipe.ingredient3 }}</div>
@@ -100,8 +100,6 @@
                   <div *ngSwitchDefault>Error: Default case reached</div>
                   </div>
                 <div class="card-text" [ngClass]="{borderedSteps: true}">Steps:
-
-
                   <p [innerHTML]="recipe.getSteps()"></p>
                 </div>
                 
