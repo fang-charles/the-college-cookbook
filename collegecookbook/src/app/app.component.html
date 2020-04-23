@@ -1,277 +1,146 @@
 <body>
   <app-header></app-header>
 
-
   <div class="container">
+    <!--{{ orderForm.value | json }}-->
+    <!--<br/>-->
+    <!--Email: {{ orderForm.value.email }}-->
+    <!--<br/>-->
+    <!--Data from order model {{ orderModel | json }}-->
 
- 
- <!--{{ orderForm.value | json }}-->
- <!--<br/>-->
- <!--Email: {{ orderForm.value.email }}-->
- <!--<br/>-->
- <!--Data from order model {{ orderModel | json }}-->
- 
- <!--<hr/>-->
- <!--Is name input valid? {{ name.valid }}-->
- <!--<br/>-->
- <!--Has name input been visited? {{ name.touched }}-->
- <!--<br/>-->
- <!--Has name input been changed? {{ name.dirty }}-->
- <!--<br/>-->
- <!--<hr/>-->
- <!--Confirm: {{ confirm_msg }} <br/>-->
- <!--Data submitted: {{ data_submitted | json }}-->
- <!--<hr/>-->
- 
- 
-  <form #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm.value)">
-   <div class="form-group">
-     <label>Search for your favorite recipe: </label>
-     <input type="text" class="form-control" name="searchTerm"
-            required
-            #name="ngModel"
-            [class.is-invalid]="name.invalid && name.touched"
-            [(ngModel)]="orderModel.searchTerm">
-     <small class="text-danger" [class.d-none]="name.valid || name.untouched">You must enter a search term</small>
-   </div>
- 
-   <button class="btn btn-primary"
-           (click)="confirmOrder(orderForm.value)"
-           title="always enabled">Search</button>
- 
-   &nbsp;&nbsp;&nbsp;&nbsp;
- 
- <!--  <button type="submit" class="btn btn-success"
+    <!--<hr/>-->
+    <!--Is name input valid? {{ name.valid }}-->
+    <!--<br/>-->
+    <!--Has name input been visited? {{ name.touched }}-->
+    <!--<br/>-->
+    <!--Has name input been changed? {{ name.dirty }}-->
+    <!--<br/>-->
+    <!--<hr/>-->
+    <!--Confirm: {{ confirm_msg }} <br/>-->
+    <!--Data submitted: {{ data_submitted | json }}-->
+    <!--<hr/>-->
+
+    <form #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm.value)">
+      <div class="form-group">
+        <label>Search for your favorite recipe: </label>
+        <input
+          type="text"
+          class="form-control"
+          name="searchTerm"
+          required
+          #name="ngModel"
+          [class.is-invalid]="name.invalid && name.touched"
+          [(ngModel)]="orderModel.searchTerm"
+        />
+        <small class="text-danger" [class.d-none]="name.valid || name.untouched"
+          >You must enter a search term</small
+        >
+      </div>
+
+      <button
+        class="btn btn-primary"
+        (click)="confirmOrder(orderForm.value)"
+        title="always enabled"
+      >
+        Search
+      </button>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;
+
+      <!--  <button type="submit" class="btn btn-success"
            [disabled]="!orderForm.form.valid"
            title="enabled once the form is valid">Submit</button>
  -->
- </form>
- 
- <hr/>
- 
- <h3>Order Confirmation</h3>
- Confirm:
-   <font color="green" style="font-style:italic">
-     <!-- If confirm_msg is not empty, display confirm message, otherwise, display default text -->
-     {{ (confirm_msg.length > 0)? confirm_msg : 'Display your confirmation message' }}</font> <br/>
- Data submitted:
-   <font color="green" style="font-style:italic">
-     <!-- If confirm_msg is not empty, display form data that was submitted. -->
-     <!-- We don't check the size of data_submitted here since we want to avoid error
+    </form>
+
+    <hr />
+
+    <h3>Order Confirmation</h3>
+    Confirm:
+    <font color="green" style="font-style: italic;">
+      <!-- If confirm_msg is not empty, display confirm message, otherwise, display default text -->
+      {{
+        confirm_msg.length > 0
+          ? confirm_msg
+          : "Display your confirmation message"
+      }}</font
+    >
+    <br />
+    Data submitted:
+    <font color="green" style="font-style: italic;">
+      <!-- If confirm_msg is not empty, display form data that was submitted. -->
+      <!-- We don't check the size of data_submitted here since we want to avoid error
           when the page is loaded and form has not been submitted (and data_submitted is an object -- json data).
           Also, we designed our program to set confirm_msg only after the button has been clicked
           (i.e., the form has been submitted). Thus, we can make use of confirm_msg here. -->
-     {{ (confirm_msg.length > 0)? (data_submitted | json) : 'Display the submitted order' }}
-   </font> <br/>
- <hr/>
- 
- Response from PHP:<br/>
-   <font color="green" style="font-style:italic">
-     <!-- If confirm_msg is not empty, display the response from the PHP backend. -->
-   {{ (confirm_msg.length > 0)? (responsedata | json) : 'Display response from PHP backend' }}
-   </font>
-   <hr/>
+      {{
+        confirm_msg.length > 0
+          ? (data_submitted | json)
+          : "Display the submitted order"
+      }}
+    </font>
+    <br />
+    <hr />
 
- </div>
+    Response from PHP:<br />
+    <font color="green" style="font-style: italic;">
+      <!-- If confirm_msg is not empty, display the response from the PHP backend. -->
+      {{
+        confirm_msg.length > 0
+          ? (responsedata | json)
+          : "Display response from PHP backend"
+      }}
+    </font>
+    <hr />
+  </div>
 
-  <div *ngFor="let order of orderArray">
+  <!-- Recipe NgFor Test-->
+  <div *ngFor="let recipe of recipeArray">
     <div class="album py-5 bg-light">
       <div class="container">
         <div class="row">
-            <div class="col-md-6">
-              <div class="card mb-6 box-shadow">
-                <div class="card-body">
-                  <h5 class="card-title">{{ order.searchTerm }}</h5>
-                  <p class="card-text">
-                    Ingredients:
-                  </p>
-                  <p class="card-text">
-                    Steps: <br>
-                  </p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">
-                        View
-                      </button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">
-                        Favorite
-                      </button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
+          <div class="col-md-6">
+            <div class="card mb-6 box-shadow">
+              <div class="card-body">
+                <h5 class="card-title">{{ recipe.recipeName }}</h5>
+                <p class="card-text">
+                  Ingredients:
+                </p>
+                <div [ngSwitch] ={{recipe.numIngredients}}>
+                  <div *ngSwitchCase=1>{{ recipe.ingredient1 }}</div>
+                  <div *ngSwitchCase=2>{{ recipe.ingredient2 }}</div>
+                  <div *ngSwitchCase=3>{{ recipe.ingredient3 }}</div>
+                  <div *ngSwitchDefault>Default case reached</div>
                   </div>
+                <p class="card-text">Steps: <br /></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-secondary"
+                    >
+                      View
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-secondary"
+                    >
+                      Favorite
+                    </button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
                 </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
+  <br /><br /><br />
 
 
- 
- <br/><br/><br/>
- 
-
-  
-  <div class="container">
-    <h2>Simple Ajax example</h2>
-    <form name="nameForm">
-      First Name: <input type="text" name="fname" id="fname" autofocus class="form-control" />
-      <br/>
-      Say something: <input type="text" name="yousay" id="yousay" class="form-control" />
-    </form>
-    <p><span id="txtHint"></span></p>
-    <p><span id="txtYousay"></span></p>
-  
-  </div>
-
-
-  <datalist id="languages">
-    <option value="HTML"> </option>
-    <option value="CSS"> </option>
-    <option value="JavaScript"> </option>
-    <option value="Java"> </option>
-    <option value="Ruby"> </option>
-    <option value="PHP"> </option>
-    <option value="Go"> </option>
-    <option value="Erlang"> </option>
-    <option value="Python"> </option>
-    <option value="C"> </option>
-    <option value="C#"> </option>
-    <option value="C++"> </option>
-  </datalist>
-
-  <h5>Not AJAX</h5>
-  <input type="text" list="languages" />
-
-  <h5>AJAX</h5>
-
-  <input
-    type="text"
-    id="ajax"
-    list="json-datalist"
-    placeholder="e.g. datalist"
-  />
-  <datalist id="json-datalist"></datalist>
- 
-
-<script>
-function makeAjaxCall(str)
-{
-   if (str.length == 0)
-   {
-      document.getElementById ("txtHint").innerHTML = "";
-      return;
-   }
-
-   // 2. Create an instance of an XMLHttpRequest object
-   xhr = GetXmlHttpObject();
-   if (xhr == null)
-   {
-      alert ("Your browser does not support XMLHTTP!");
-      return;
-   }
-
-
-   // 3. specify a backend handler (URL to the backend)
-
-   var backend_url = "welcomeMsg.php"; //relative path
-
-
-   // 4. Assume we are going to send a GET request,
-   //    use url rewriting to pass information the backend needs to process the request
-
-   //backend_url += "?StringSoFar=" + str; //GET
-   var data_tosend = "StringSoFar=" + str; //POST
-
-   // 5. Configure the XMLHttpRequest instance.
-   //    Register the callback function.
-   //    Assume the callback function is named showHint(),
-   //    don't forget to write code for the callback function at the bottom
-
-
-   xhr.onreadystatechange = function()
-   {
-      if(xhr.readyState === 4)   //check value and type
-      {
-         if(xhr.status === 200)  //ok
-         {
-            var res = xhr.responseText; 
-            showHint(res);
-         }
-         else 
-            console.log("xhr fail");
-      }
-      else
-         console.log("xhr still in progress");
-   }
-
-
-
-
-   // 8. Once the response is back the from the backend,
-   //    the callback function is called to update the screen
-   //    (this will be handled by the configuration above)
-
-
-
-   // 6. Make an asynchronous request
-
-   //xhr.open('GET', backend_url, true);
-   xhr.open('POST', backend_url, true);
-   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-   // 7. The request is sent to the server
-   //xhr.send(null);
-   xhr.send(data_tosend);
-
-
-}
-
-// 1. Add event listener to the input boxes.
-//    Call makeAjaxCall() when the event happens
-
-document.getElementById("fname").addEventListener("keyup", function(){
-   var StringSoFar = document.getElementById("fname").value;
-   makeAjaxCall(StringSoFar);
-}
-);
-
-
-
-// The callback function processes the response from the server
-function showHint(str)
-{
-   // what do to with the response
-   if (str.length == 0){
-      document.getElementById('txtHint').innerHTML = '';
-      return; 
-   }
-
-   document.getElementById('txtHint').innerHTML = "Welcome" + str;
-
-
-}
-
-
-
-function GetXmlHttpObject()
-{
-   // Create an XMLHttpRequest object
-	
-   if (window.XMLHttpRequest)
-   {  // code for IE7+, Firefox, Chrome, Opera, Safari
-      return new XMLHttpRequest();
-   }
-   if (window.ActiveXObject)
-   { // code for IE6, IE5
-     return new ActiveXObject ("Microsoft.XMLHTTP");
-   }
-   return null;
-}
-
-</script>
 
   <app-footer></app-footer>
 </body>
