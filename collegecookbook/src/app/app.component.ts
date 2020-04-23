@@ -22,6 +22,11 @@ export class AppComponent {
   orderModel = new Order('');
 
 
+  orderArray = [new Order('Order 1'),
+                new Order('Order 2'),
+                new Order('Order 3')
+    ]
+
   confirm_msg = '';
   data_submitted = '';
 
@@ -45,15 +50,19 @@ export class AppComponent {
      // To send a GET request, use the concept of URL rewriting to pass data to the backend
      // this.http.get<Order>('http://localhost/cs4640/inclass11/ngphp-get.php?str='+params)
      // To send a POST request, pass data as an object
-     this.http.post<Order>('http://localhost/the-college-cookbook/collegecookbook/angularBackend.php', params)
+     this.http.post<Order>('http://localhost/cs4640/the-college-cookbook/collegecookbook/angularBackend.php', params)
      .subscribe((data) => {
           // Receive a response successfully, do something here
           // console.log('Response from backend ', data);
           this.responsedata = data;     // assign response to responsedata property to bind to screen later
-
+          this.orderArray = [new Order('Order 4'),
+          new Order('Order 5'),
+          new Order('Order 6')
+          ]
           //json parse to js object
           //feed it into constructure
           //show into array
+
 
      }, (error) => {
           // An error occurs, handle an error in some way
