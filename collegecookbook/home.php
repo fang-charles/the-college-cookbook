@@ -41,7 +41,7 @@ require('dbquery.php');
 </head>
 
 <?php session_start();
-include('header.html');
+include('./src/app/components/header/header.component.html');
 ?>
 
 <script>
