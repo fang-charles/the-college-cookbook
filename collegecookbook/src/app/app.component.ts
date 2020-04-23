@@ -27,14 +27,6 @@ export class AppComponent {
                 new Order('Order 3')
     ];
 
-  testrecipeArray = [
-      new Recipe('Italian Beef', 'Beef', 'Broth', '', '', '', '', '', '', '', '',
-        'Put in pot', 'Cook for 10 min', 'Eat while hot', '', '', '', '', '', '', '',
-        2, 3, 'Charles', 'Charles04232020'),
-      new Recipe('Hot Dog', 'meat', 'bun', '', '', '', '', '', '', '', '',
-        'boil', 'Put hot dog in bun', '', '', '', '', '', '', '', '',
-        2, 2, 'Charles', 'Charles04232020')
-  ];
   recipeArray = [];
 
   confirm_msg = '';
@@ -63,24 +55,16 @@ export class AppComponent {
      this.http.post<Order>('http://localhost/the-college-cookbook/collegecookbook/angularBackend.php', params)
      .subscribe((data) => {
           // Receive a response successfully, do something here
-          // console.log('Response from backend ', data);
+
           this.recipeArray = [];
           this.responsedata = data;     // assign response to responsedata property to bind to screen later
-          console.log(Object.keys(data).length);
+
           for (let i = 0; i < Object.keys(data).length; i++) {
               this.recipeArray.push(new Recipe(data[i]['recipeName'], data[i]['ingredient1'], data[i]['ingredient2'], data[i]['ingredient3'],
               data[i]['ingredient4'], data[i]['ingredient5'], data[i]['ingredient6'], data[i]['ingredient7'], data[i]['ingredient8'], data[i]['ingredient9'],
               data[i]['ingredient10'], data[i]['step1'], data[i]['step2'], data[i]['step3'], data[i]['step4'], data[i]['step5'], data[i]['step6'], data[i]['step7'],
               data[i]['step8'], data[i]['step9'], data[i]['step10'], data[i]['numIngredients'], data[i]['numSteps'], data[i]['username'], data[i]['recipeId']));
           }
-          this.orderArray = [new Order('Order 4'),
-          new Order('Order 5'),
-          new Order('Order 6')
-          ];
-          // json parse to js object
-          // feed it into constructure
-          // show into array
-
 
      }, (error) => {
           // An error occurs, handle an error in some way
