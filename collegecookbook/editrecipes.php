@@ -12,7 +12,7 @@ require('dbquery.php');
 </head>
 
 <?php session_start();
-include('header.html');
+include('./src/app/components/header/header.component.html');
 ?>
 
 <body>
@@ -34,7 +34,7 @@ include('header.html');
 
 			<div class="form-group">
 				<label for="ingredient">Ingredients</label>
-				<input type="text" id="ingredient" class="form-control" name="ingredient[]" required value="<?php echo $recipe['ingredient1'] ?>" />	
+				<input type="text" id="ingredient" class="form-control" name="ingredient[]" required value="<?php echo $recipe['ingredient1'] ?>" />
 				<span class="error" id="ingredient-note"></span>
 			</div>
 			<?php
@@ -75,7 +75,7 @@ include('header.html');
 	</div>
 </body>
 
-<?php 
+<?php
 include('footer.html');
 ?>
 
