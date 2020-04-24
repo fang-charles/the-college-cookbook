@@ -17,6 +17,35 @@ include('./src/app/components/header/header.component.html');
 
 <body onload="initializeCookies()" >
 
+
+
+<?php
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (empty($_POST['recipename']))
+        echo "Please fill out the recipe name. <br>";
+
+    if (count($_POST['ingredient']) == 1 && $_POST['ingredient'][0] == "")
+        echo "Please add an ingredient. <br>";
+
+    if (count($_POST['steps']) == 1 && $_POST['steps'][0] == "")
+        echo "Please add a step. <br>";
+
+    if((!empty($_POST['recipename'])) && (count($_POST['ingredient']) >= 1 && $_POST['ingredient'][0] != "") && (count($_POST['steps']) >= 1 && $_POST['steps'][0] != "")) {
+        date_default_timezone_set("America/New_York");
+        $recipe_id = $_COOKIE['username'] . date("h:i:s");
+
+        addRecipe($_POST['recipename'], $_POST['ingredient'], $_POST['steps'], $recipe_id);
+        setcookie('recipe_id', $recipe_id, time()+36000);
+
+        $_SESSION['recipename'] = $_POST['recipename'];
+        $_SESSION['ingredient'] = $_POST['ingredient'];
+        $_SESSION['steps'] = $_POST['steps'];
+
+        header("Location: " . "viewrecipe.php");
+    }
+}
+?>
+
 <div style="text-align:center">
   <h1>Submit a Recipe</h1>
 </div>
@@ -94,32 +123,6 @@ include('./src/app/components/header/header.component.html');
   };
 </script>
 
-<?php
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (empty($_POST['recipename']))
-        echo "Please fill out the recipe name. <br>";
-
-    if (count($_POST['ingredient']) == 1 && $_POST['ingredient'][0] == "")
-        echo "Please add an ingredient. <br>";
-
-    if (count($_POST['steps']) == 1 && $_POST['steps'][0] == "")
-        echo "Please add a step. <br>";
-
-    if((!empty($_POST['recipename'])) && (count($_POST['ingredient']) >= 1 && $_POST['ingredient'][0] != "") && (count($_POST['steps']) >= 1 && $_POST['steps'][0] != "")) {
-        date_default_timezone_set("America/New_York");
-        $recipe_id = $_COOKIE['username'] . date("h:i:s");
-
-        addRecipe($_POST['recipename'], $_POST['ingredient'], $_POST['steps'], $recipe_id);
-        setcookie('recipe_id', $recipe_id, time()+36000);
-
-        $_SESSION['recipename'] = $_POST['recipename'];
-        $_SESSION['ingredient'] = $_POST['ingredient'];
-        $_SESSION['steps'] = $_POST['steps'];
-
-        header("Location: " . "viewrecipe.php");
-    }
-}
-?>
 
 <?php
 include('./src/app/components/footer/footer.component.html');

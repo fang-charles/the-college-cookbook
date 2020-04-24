@@ -12,7 +12,8 @@
 
 <body>
 <?php session_start();
-include('header.html');
+  include('./src/app/components/header/header.component.html');
+
 ?>
 
   <h1><?php echo $_SESSION['recipename'] ?></h1>
@@ -54,5 +55,9 @@ include('header.html');
   </table>
 </body>
 
+<?php 
+  include('./src/app/components/footer/footer.component.html');
+
+?>
 
 </html>
