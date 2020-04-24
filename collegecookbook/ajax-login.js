@@ -2,6 +2,7 @@ function makeAjaxCall(username) {
 
   //var username = document.getElementById("username").value;
 
+
   // 2. Create an instance of an XMLHttpRequest object
   xhr = GetXmlHttpObject();
   if (xhr == null) {
@@ -65,7 +66,9 @@ document.getElementById('username').addEventListener("keyup", function()
 // The callback function processes the response from the server
 function generateOptions(str) {
   // Get the <datalist> and <input> elements.
+
   var dataList = document.getElementById("json-datalist");
+  dataList.innerHTML ="";
   var input = document.getElementById("username");
   // what do to with the response
   // Parse the JSON
