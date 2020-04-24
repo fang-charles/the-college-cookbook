@@ -115,7 +115,6 @@ function updateRecipe($name, $ingredients, $steps, $id)
     $numIngredients = count($ingredients);
     $numSteps = count($steps);
     $query = "UPDATE recipes SET recipeName=:recipeName, $ingredientquery $stepquery numIngredients=:numIngredients, numSteps=:numSteps WHERE recipeId=:id";
-    //echo $query;
     $statement = $db->prepare($query);
 
     $statement->bindValue(':recipeName', $name);
