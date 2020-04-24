@@ -77,7 +77,13 @@ include('./src/app/components/header/header.component.html');
 
 
 			<div id="newElementId"></div>
-			<input type="button" class="btn btn-light" id="add" value="Add Ingredient" onclick="addIngredient()" />
+			<input type="button" class="btn btn-light" id="add" value="Add Ingredient" onclick="addIngredient()" 
+			<?php
+					if(!isset($_COOKIE['recipe_id'])){
+						echo "disabled"; 
+					}
+					?>
+			/>
 
 			<div class="form-group">
 				<label for="ingredient">Steps</label>
@@ -100,7 +106,14 @@ include('./src/app/components/header/header.component.html');
 				?>
 
 			<div id="newStep"></div>
-			<input type="button" class="btn btn-light" id="add1" value="Add Step" onclick="addStep()" />
+			<input type="button" class="btn btn-light" id="add1" value="Add Step" onclick="addStep()" 
+			<?php
+					if(!isset($_COOKIE['recipe_id'])){
+						echo "disabled"; 
+					}
+					?>
+			
+			/>
 
 			<div>
 				<button class="btn btn-primary" formnovalidate 				<?php
@@ -129,7 +142,7 @@ include('./src/app/components/footer/footer.component.html');
 		} else {
 			var input = document.createElement("div");
 			input.setAttribute('class', 'form-group');
-			input.innerHTML = "<input type='text' id='ingredient' class='form-control' name='ingredient[]' required readonly />";
+			input.innerHTML = "<input type='text' id='ingredient' class='form-control' name='ingredient[]' required  />";
 			document.getElementById("newElementId").appendChild(input);
 			numIngredients++;
 			document.cookie = "numIngredients=" + numIngredients;
