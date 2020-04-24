@@ -19,22 +19,50 @@ include('./src/app/components/header/header.component.html');
 	<div style="text-align:center">
 		<h1>Edit Recent Recipe</h1>
 	</div>
-	<?php $recipe = getRecentRecipe($_COOKIE['recipe_id']); ?>
+	<?php
+		if(isset($_COOKIE['recipe_id'])){
+			$recipe = getRecentRecipe($_COOKIE['recipe_id']);
+		}
+		else{
+			$recipe['recipeName'] ="";
+			$recipe['ingredient1'] ="";
+			$recipe['numIngredients'] =0;
+			$recipe['step1'] ="";
+			$recipe['numSteps'] =0;
+		}
+	 ?>
 
 
 	<div class="col-xs-12 col-sm-12 col-lg-12">
 		<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" name="recipeForm">
 			<div class="form-group">
 				<div class="col-xs-6 col-xs-offset-3">
+					<?php
+					if(!isset($_COOKIE['recipe_id'])){
+						echo "<h5> You did not create a recipe yet! </h5>"; 
+					}
+					?>
 					<label for="recipename">Recipe Name</label>
-					<input type="text" id="recipename" class="form-control" name="recipename" value="<?php echo $recipe['recipeName'] ?>" />
+					<input type="text" id="recipename" class="form-control" name="recipename" value="<?php echo $recipe['recipeName'] ?>" 
+					<?php
+					if(!isset($_COOKIE['recipe_id'])){
+						echo "readonly"; 
+					}
+					?>
+					/>
 					<span class="error" id="recipename-note"></span>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="ingredient">Ingredients</label>
-				<input type="text" id="ingredient" class="form-control" name="ingredient[]" required value="<?php echo $recipe['ingredient1'] ?>" />
+				<input type="text" id="ingredient" class="form-control" name="ingredient[]" required value="<?php echo $recipe['ingredient1'] ?>" 
+				<?php
+					if(!isset($_COOKIE['recipe_id'])){
+						echo "readonly"; 
+					}
+					?>
+				/>
 				<span class="error" id="ingredient-note"></span>
 			</div>
 			<?php
@@ -53,7 +81,13 @@ include('./src/app/components/header/header.component.html');
 
 			<div class="form-group">
 				<label for="ingredient">Steps</label>
-				<input type="text" id="steps" class="form-control" name="steps[]" required value="<?php echo $recipe['step1'] ?>" />
+				<input type="text" id="steps" class="form-control" name="steps[]" required value="<?php echo $recipe['step1'] ?>" 
+				<?php
+					if(!isset($_COOKIE['recipe_id'])){
+						echo "readonly"; 
+					}
+					?>
+				/>
 				<span class="error" id="steps-note"></span>
 			</div>
 			<?php
@@ -69,14 +103,18 @@ include('./src/app/components/header/header.component.html');
 			<input type="button" class="btn btn-light" id="add1" value="Add Step" onclick="addStep()" />
 
 			<div>
-				<button class="btn btn-primary" formnovalidate>Update Recipe!</button>
+				<button class="btn btn-primary" formnovalidate 				<?php
+					if(!isset($_COOKIE['recipe_id'])){
+						echo "disabled"; 
+					}
+					?>>Update Recipe!</button>
 			</div>
 		</form>
 	</div>
 </body>
 
 <?php
-include('footer.html');
+include('./src/app/components/footer/footer.component.html');
 ?>
 
 <script>
@@ -91,7 +129,7 @@ include('footer.html');
 		} else {
 			var input = document.createElement("div");
 			input.setAttribute('class', 'form-group');
-			input.innerHTML = "<input type='text' id='ingredient' class='form-control' name='ingredient[]' required/>";
+			input.innerHTML = "<input type='text' id='ingredient' class='form-control' name='ingredient[]' required readonly />";
 			document.getElementById("newElementId").appendChild(input);
 			numIngredients++;
 			document.cookie = "numIngredients=" + numIngredients;
@@ -104,7 +142,7 @@ include('footer.html');
 		} else {
 			var input1 = document.createElement("div");
 			input1.setAttribute('class', 'form-group');
-			input1.innerHTML = "<input type='text' id='steps' class='form-control' name='steps[]' required/>";
+			input1.innerHTML = "<input type='text' id='steps' class='form-control' name='steps[]' required readonly/>";
 			document.getElementById("newStep").appendChild(input1);
 			numSteps++;
 			document.cookie = "numSteps=" + numSteps;

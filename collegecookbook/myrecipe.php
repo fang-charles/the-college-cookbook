@@ -119,5 +119,5 @@ include('./src/app/components/header/header.component.html');
 </body>
 
 <?php
-include('footer.html');
+include('./src/app/components/footer/footer.component.html');
 ?>

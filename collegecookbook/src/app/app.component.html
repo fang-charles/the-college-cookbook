@@ -36,11 +36,10 @@
     </form>
 
     <hr />
-
-    <h3>Order Confirmation</h3>
+    <!-- 
+    <h3>Search Confirmation</h3>
     Confirm:
     <font color="green" style="font-style: italic;">
-      <!-- If confirm_msg is not empty, display confirm message, otherwise, display default text -->
       {{
         confirm_msg.length > 0
           ? confirm_msg
@@ -50,11 +49,6 @@
     <br />
     Data submitted:
     <font color="green" style="font-style: italic;">
-      <!-- If confirm_msg is not empty, display form data that was submitted. -->
-      <!-- We don't check the size of data_submitted here since we want to avoid error
-          when the page is loaded and form has not been submitted (and data_submitted is an object -- json data).
-          Also, we designed our program to set confirm_msg only after the button has been clicked
-          (i.e., the form has been submitted). Thus, we can make use of confirm_msg here. -->
       {{
         confirm_msg.length > 0
           ? (data_submitted | json)
@@ -66,7 +60,6 @@
 
     Response from PHP:<br />
     <font color="green" style="font-style: italic;">
-      <!-- If confirm_msg is not empty, display the response from the PHP backend. -->
       {{
         confirm_msg.length > 0
           ? (responsedata | json)
@@ -74,6 +67,7 @@
       }}
     </font>
     <hr />
+  -->
   </div>
 
   <!-- Recipe NgFor Test-->

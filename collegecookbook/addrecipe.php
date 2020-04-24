@@ -122,7 +122,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <?php
-include('footer.html');
+include('./src/app/components/footer/footer.component.html');
 ?>
 
 <!-- <form [formGroup]="recipe">

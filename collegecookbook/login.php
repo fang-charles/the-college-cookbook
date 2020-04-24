@@ -90,7 +90,6 @@
       <input type="submit" value="Enter the wonderful world of wonderful food!" class="btn btn-light"  />
     </form>
 
-
 </body>
 
 <script type="text/javascript" src="ajax-login.js"></script>

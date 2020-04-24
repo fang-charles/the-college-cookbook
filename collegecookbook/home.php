@@ -113,6 +113,6 @@ include('./src/app/components/header/header.component.html');
   </div>
 </body>
 
-<?php 
-include('footer.html');
+<?php
+include('./src/app/components/footer/footer.component.html');
 ?>
