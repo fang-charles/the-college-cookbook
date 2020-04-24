@@ -155,7 +155,7 @@ include('./src/app/components/footer/footer.component.html');
 		} else {
 			var input1 = document.createElement("div");
 			input1.setAttribute('class', 'form-group');
-			input1.innerHTML = "<input type='text' id='steps' class='form-control' name='steps[]' required readonly/>";
+			input1.innerHTML = "<input type='text' id='steps' class='form-control' name='steps[]' required />";
 			document.getElementById("newStep").appendChild(input1);
 			numSteps++;
 			document.cookie = "numSteps=" + numSteps;
