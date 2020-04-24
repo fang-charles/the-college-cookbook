@@ -1,69 +1,47 @@
-function makeAjaxCall(username) {
+function makeAjaxCall(methodType, url, data_tosend) {
+  // promise
+  var promiseObj = new Promise(function (resolve, reject) {
+    // create an instance of an XMLHttpRequest object
+    xhr = GetXmlHttpObject();
+    if (xhr == null) {
+      alert("Your browser does not support XMLHTTP!");
+      return;
+    }
 
-  //var username = document.getElementById("username").value;
+    // make asynchronous request
+    xhr.open(methodType, url, true);
 
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-  // 2. Create an instance of an XMLHttpRequest object
-  xhr = GetXmlHttpObject();
-  if (xhr == null) {
-    alert("Your browser does not support XMLHTTP!");
-    return;
-  }
+    // send request to server
+    xhr.send(data_tosend);
 
-  // 3. specify a backend handler (URL to the backend)
-
-  var backend_url = "usernames.php"; //relative path
-
-  // 4. Assume we are going to send a GET request,
-  //    use url rewriting to pass information the backend needs to process the request
-
-  //backend_url += "?StringSoFar=" + username; //GET
-  var data_tosend = "username=" + username; //POST
-
-  // 5. Configure the XMLHttpRequest instance.
-  //    Register the callback function.
-  //    Assume the callback function is named showHint(),
-  //    don't forget to write code for the callback function at the bottom
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      //check value and type
-      if (xhr.status === 200) {
-        //ok
-        var res = xhr.responseText;
-        generateOptions(res);
-      } else console.log("xhr fail");
-    } else console.log("xhr still in progress");
-  };
-
-  // 8. Once the response is back the from the backend,
-  //    the callback function is called to update the screen
-  //    (this will be handled by the configuration above)
-
-  // 6. Make an asynchronous request
-
-  //xhr.open('GET', backend_url, true);
-  //xhr.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
-  xhr.open("POST", backend_url, true);
-  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-  // 7. The request is sent to the server
-  //xhr.send(null);
-  xhr.send(data_tosend);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) { //check value and type
+        if (xhr.status === 200) { //ok
+          var res = xhr.responseText;
+          resolve(res);
+        } else {
+          console.log("xhr fail");
+          reject(xhr.status);
+        }
+      } else console.log("xhr still in progress");
+    }
+  });
+  return promiseObj;
 }
 
-// 1. Add event listener to the input boxes.
-//    Call makeAjaxCall() when the event happens
+  document.getElementById('username').addEventListener("keyup", function()
+  {
+    var str_sofar = document.getElementById('username').value;
 
-document.getElementById('username').addEventListener("keyup", function()
-{
-  var str_sofar = document.getElementById('username').value;
-  // call the function to send asynch request
-  makeAjaxCall(str_sofar);
-});
+    var backend_url = "usernames.php"; //relative path
 
+    var data_tosend = "username=" + str_sofar; //POST
+    // call the function to send asynch request
+    makeAjaxCall("POST", backend_url, data_tosend).then(generateOptions, errorHandler);
+  });
 
-// The callback function processes the response from the server
 function generateOptions(str) {
   // Get the <datalist> and <input> elements.
 
@@ -101,3 +79,8 @@ function GetXmlHttpObject() {
   }
   return null;
 }
+
+// error
+  function errorHandler(statusCode){
+    console.log("failed with status", status);
+  }
