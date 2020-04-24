@@ -1,9 +1,8 @@
 <?php
 require('connectdb.php');
 
+  $username = $_POST['username'];
 
-function getUsernames($username)
-{
   global $db;
 
   $query = "SELECT DISTINCT username FROM recipes WHERE username LIKE :username";
@@ -12,8 +11,15 @@ function getUsernames($username)
   $statement->bindValue(':username', '%' . $username . '%');
   $statement->execute();
 
+  $resultsArray = [];
   $results = $statement->fetchAll();
   $statement->closeCursor();
-  return $results;
-}
+
+  if (count($results) > 0) {
+    foreach($results as $r) {
+      $resultsArray[] = $r['username'];
+    }
+    print json_encode($resultsArray);
+  }
+
 ?>

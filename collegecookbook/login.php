@@ -85,13 +85,12 @@
     <h1>Welcome to The College Cookbook!</h1>
     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" name="loginForm">
       Please enter your name below: </br>
-      <input type="text" name="username" id ="username" placeholder="Gordon Ramsay" value ="Charles" maxlength="20" required /> <br />
-      <input type="submit" value="Enter the wonderful world of wonderful food!" class="btn btn-light"  />   
+      <input type="text" name="username" id ="username" placeholder="Gordon Ramsay" maxlength="20" required list="json-datalist" /> <br />
+      <datalist id="json-datalist"></datalist>
+      <input type="submit" value="Enter the wonderful world of wonderful food!" class="btn btn-light"  />
     </form>
 
 
-    <input type="text" id="ajax" list="json-datalist" placeholder="e.g. datalist">
-    <datalist id="json-datalist"></datalist>
 </body>
 
 <script type="text/javascript" src="ajax-login.js"></script>

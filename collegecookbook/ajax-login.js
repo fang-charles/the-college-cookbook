@@ -1,6 +1,6 @@
-function makeAjaxCall() {
+function makeAjaxCall(username) {
 
-  var username = document.getElementById("username").value;
+  //var username = document.getElementById("username").value;
 
   // 2. Create an instance of an XMLHttpRequest object
   xhr = GetXmlHttpObject();
@@ -42,27 +42,31 @@ function makeAjaxCall() {
   // 6. Make an asynchronous request
 
   //xhr.open('GET', backend_url, true);
-  xhr.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
-  //xhr.open("POST", backend_url, true);
-  //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  //xhr.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
+  xhr.open("POST", backend_url, true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   // 7. The request is sent to the server
   //xhr.send(null);
-  xhr.send();
+  xhr.send(data_tosend);
 }
 
 // 1. Add event listener to the input boxes.
 //    Call makeAjaxCall() when the event happens
 
-
-  makeAjaxCall();
+document.getElementById('username').addEventListener("keyup", function()
+{
+  var str_sofar = document.getElementById('username').value;
+  // call the function to send asynch request
+  makeAjaxCall(str_sofar);
+});
 
 
 // The callback function processes the response from the server
 function generateOptions(str) {
   // Get the <datalist> and <input> elements.
   var dataList = document.getElementById("json-datalist");
-  var input = document.getElementById("ajax");
+  var input = document.getElementById("username");
   // what do to with the response
   // Parse the JSON
   var jsonOptions = JSON.parse(str);
@@ -78,7 +82,7 @@ function generateOptions(str) {
   });
 
   // Update the placeholder text.
-  input.placeholder = "e.g. datalist";
+  input.placeholder = "Gordon Ramsay";
 }
 
 function GetXmlHttpObject() {
