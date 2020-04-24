@@ -21,7 +21,7 @@
 
       <button
         class="btn btn-primary"
-        (click)="confirmOrder(orderForm.value)"
+        (click)="confirmSearch(orderForm.value)"
         title="always enabled"
       >
         Search
@@ -36,6 +36,7 @@
     </form>
 
     <hr />
+    <h1 style="text-align: center;">{{ searchValue }}</h1>
     <!--
     <h3>Search Confirmation</h3>
     Confirm:

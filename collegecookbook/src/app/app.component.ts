@@ -31,10 +31,11 @@ export class AppComponent {
 
   confirm_msg = '';
   data_submitted = '';
+  searchValue = "";
 
-  confirmOrder(data) {
+  confirmSearch(data) {
      console.log(data);
-     this.confirm_msg = 'Search Term: ' + data.searchTerm;
+     this.searchValue = 'Results for \"' + data.searchTerm + '\"';
   }
 
 
