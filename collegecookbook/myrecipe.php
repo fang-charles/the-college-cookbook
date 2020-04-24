@@ -107,7 +107,7 @@ include('./src/app/components/header/header.component.html');
                       Favorite
                     </button>
                   </div>
-                  <small class="text-muted">9 mins</small>
+                  <small class="text-muted"><?php echo $recipe['username'] ?></small>
                 </div>
               </div>
             </div>
